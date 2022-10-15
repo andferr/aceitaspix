@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.30104.148
+VisualStudioVersion = 16.0.32929.386
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AceitasPixMVP", "AceitasPixMVP.csproj", "{9F27A31E-2F1F-4E09-B9F8-70246AA06043}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AceitasPixMVP", "AceitasPixMVP.csproj", "{BF30144B-B996-4353-A459-E75051E72BE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9F27A31E-2F1F-4E09-B9F8-70246AA06043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F27A31E-2F1F-4E09-B9F8-70246AA06043}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F27A31E-2F1F-4E09-B9F8-70246AA06043}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F27A31E-2F1F-4E09-B9F8-70246AA06043}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF30144B-B996-4353-A459-E75051E72BE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF30144B-B996-4353-A459-E75051E72BE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF30144B-B996-4353-A459-E75051E72BE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF30144B-B996-4353-A459-E75051E72BE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {81856A08-D2C4-4346-BB7D-A555C9EFFBBC}
+		SolutionGuid = {0B553E74-55EB-4C32-9192-DBD6838382B0}
 	EndGlobalSection
 EndGlobal
