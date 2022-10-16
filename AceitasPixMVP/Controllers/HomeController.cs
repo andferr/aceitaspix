@@ -15,14 +15,7 @@ namespace AceitasPixMVP.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Aceitas Pix, sua plataforma de apoio ao criador de conteúdo";
 
             return View();
         }
