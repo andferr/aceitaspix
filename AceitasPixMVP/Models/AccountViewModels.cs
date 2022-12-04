@@ -29,11 +29,11 @@ namespace AceitasPixMVP.Models
         public string Provider { get; set; }
 
         [Required]
-        [Display(Name = "Code")]
+        [Display(Name = "Código")]
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Remember this browser?")]
+        [Display(Name = "Lembrar este navegador?")]
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
@@ -55,10 +55,10 @@ namespace AceitasPixMVP.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Senha")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Manter conectado?")]
         public bool RememberMe { get; set; }
     }
 
@@ -70,15 +70,132 @@ namespace AceitasPixMVP.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "A {0} deve ter ao menos {2} caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Senha")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Confirmação de senha")]
+        [Compare("Password", ErrorMessage = "A senha e a confirmação de senha não conferem.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Nome Completo")]
+        public string FullName { get; set; }
+
+        [Required]
+        [Display(Name = "Nascimento")]
+        public string BirthDate { get; set; }
+
+        [Required]
+        [Display(Name = "CEP")]
+        public string PostalCode { get; set; }
+
+        [Required]
+        [Display(Name = "Endereço")]
+        public string Street { get; set; }
+
+        [Required]
+        [Display(Name = "Número")]
+        public string Number { get; set; }
+
+        [Display(Name = "Complemento")]
+        public string Complement { get; set; }
+
+        [Required]
+        [Display(Name = "Cidade")]
+        public string City { get; set; }
+
+        [Required]
+        [Display(Name = "Estado")]
+        public string State { get; set; }
+
+        [Required]
+        [Display(Name = "Telefone")]
+        public string Phone { get; set; }
+
+        [Required]
+        [Display(Name = "Streamer?")]
+        public bool Streamer { get; set; }
+
+        [Required]
+        [Display(Name = "Sexo")]
+        public string Gender { get; set; }
+
+        [Required]
+        [Display(Name = "CPF")]
+        public string Cpf { get; set; }
+    }
+
+    public class ProfileViewModel
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [StringLength(100, ErrorMessage = "A {0} deve ter ao menos {2} caracteres.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Senha atual")]
+        public string CurrentPassword { get; set; }
+
+        [StringLength(100, ErrorMessage = "A {0} deve ter ao menos {2} caracteres.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Senha")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirmação de senha")]
+        [Compare("Password", ErrorMessage = "A senha e a confirmação de senha não conferem.")]
+        public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Nome Completo")]
+        public string FullName { get; set; }
+
+        [Required]
+        [Display(Name = "Nascimento")]
+        public string BirthDate { get; set; }
+
+        [Required]
+        [Display(Name = "CEP")]
+        public string PostalCode { get; set; }
+
+        [Required]
+        [Display(Name = "Endereço")]
+        public string Street { get; set; }
+
+        [Required]
+        [Display(Name = "Número")]
+        public string Number { get; set; }
+
+        [Display(Name = "Complemento")]
+        public string Complement { get; set; }
+
+        [Required]
+        [Display(Name = "Cidade")]
+        public string City { get; set; }
+
+        [Required]
+        [Display(Name = "Estado")]
+        public string State { get; set; }
+
+        [Required]
+        [Display(Name = "Telefone")]
+        public string Phone { get; set; }
+
+        [Required]
+        [Display(Name = "Streamer?")]
+        public bool Streamer { get; set; }
+
+        [Required]
+        [Display(Name = "Sexo")]
+        public string Gender { get; set; }
+
+        [Required]
+        [Display(Name = "CPF")]
+        public string Cpf { get; set; }
     }
 
     public class ResetPasswordViewModel
@@ -89,14 +206,14 @@ namespace AceitasPixMVP.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "A {0} deve ter ao menos {2} caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Senha")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Confirmação de senha")]
+        [Compare("Password", ErrorMessage = "A senha e a confirmação de senha não conferem.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

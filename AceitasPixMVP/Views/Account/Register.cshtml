@@ -1,6 +1,6 @@
 ﻿@model AceitasPixMVP.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Registro";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -8,7 +8,7 @@
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
+    <h4>Crie uma nova conta.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
@@ -30,12 +30,145 @@
         </div>
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.FullName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @{
+                var genders = new Dictionary<string, string>
+                {
+                    {"M", "Masculino"},
+                    {"F", "Feminino"}
+                };
+            }
+            @Html.DropDownListFor(m => m.Gender, new SelectList(genders, "Key", "Value"), new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Cpf, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Cpf, new { @class = "form-control", id = "input_cpf" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.BirthDate, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control", id = "input_birth" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", id = "input_phone" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Streamer, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(m => m.Streamer, new { @class = "form-control", id = "ck_streamer" })
+        </div>
+    </div>
+    <div id="streamer_fields" style="display:none;">
+        <div class="form-group">
+            @Html.LabelFor(m => m.PostalCode, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.PostalCode, new { @class = "form-control", id = "input_postal" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Street, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Street, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Number, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Number, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Complement, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Complement, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.State, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @{
+                    var states = new Dictionary<string, string>
+                    {
+                        {"AC","Acre"},
+                        {"AL","Alagoas"},
+                        {"AP","Amapá"},
+                        {"AM","Amazonas"},
+                        {"BA","Bahia"},
+                        {"CE","Ceará"},
+                        {"DF","Distrito Federal"},
+                        {"ES","Espírito Santo"},
+                        {"GO","Goiás"},
+                        {"MA","Maranhão"},
+                        {"MT","Mato Grosso"},
+                        {"MS","Mato Grosso do Sul"},
+                        {"MG","Minas Gerais"},
+                        {"PA","Pará"},
+                        {"PB","Paraíba"},
+                        {"PR","Paraná"},
+                        {"PE","Pernambuco"},
+                        {"PI","Piauí"},
+                        {"RJ","Rio de Janeiro"},
+                        {"RN","Rio Grande do Norte"},
+                        {"RS","Rio Grande do Sul"},
+                        {"RO","Rondônia"},
+                        {"RR","Roraima"},
+                        {"SC","Santa Catarina"},
+                        {"SP","São Paulo"},
+                        {"SE","Sergipe"},
+                        {"TO","Tocantins"}
+                    };
+                }
+                @Html.DropDownListFor(m => m.State, new SelectList(states, "Key", "Value"), new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+            <input type="submit" class="btn btn-default" value="Criar conta" />
         </div>
     </div>
 }
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryforms")    
 }
+
+<script>
+    $(document).ready(function () {
+        if ($("#ck_streamer").is(":checked")) {
+            $("#streamer_fields").show();
+        } else {
+            $("#streamer_fields").hide();
+        }
+
+        $("#ck_streamer").on("change", function () {
+            debugger;
+            if ($(this).is(":checked")) {
+                $("#streamer_fields").show();
+            } else {
+                $("#streamer_fields").hide();
+            }
+        });
+    });
+</script>

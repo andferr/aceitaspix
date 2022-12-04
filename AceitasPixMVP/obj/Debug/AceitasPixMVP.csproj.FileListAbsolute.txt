@@ -115,3 +115,4 @@ D:\André\aceitas pix\git\aceitaspix\AceitasPixMVP\bin\Microsoft.Owin.Security.O
 D:\André\aceitas pix\git\aceitaspix\AceitasPixMVP\obj\Debug\DB.AceitasPix.ssdl
 D:\André\aceitas pix\git\aceitaspix\AceitasPixMVP\obj\Debug\DB.AceitasPix.csdl
 D:\André\aceitas pix\git\aceitaspix\AceitasPixMVP\obj\Debug\DB.AceitasPix.msl
+D:\André\aceitas pix\git\aceitaspix\AceitasPixMVP\bin\Gerencianet.SDK.dll

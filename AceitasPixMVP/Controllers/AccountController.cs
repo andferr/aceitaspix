@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AceitasPixMVP.Models;
+using AceitaspixModel;
 
 namespace AceitasPixMVP.Controllers
 {
@@ -135,6 +136,119 @@ namespace AceitasPixMVP.Controllers
         }
 
         //
+        // GET: /Account/Profile
+        public ActionResult Profile()
+        {
+            string userSessionId = User.Identity.GetUserId();
+
+            AceitaspixEntities contexto = new AceitaspixEntities();
+            UserAccount userAcc = contexto.UserAccounts.Where(x => x.UserId == userSessionId).FirstOrDefault();
+            Aspnetuser user = contexto.Aspnetusers.Where(x => x.Id == userSessionId).FirstOrDefault();
+
+            UserTwitchAccount twitchAccount = contexto.UserTwitchAccounts.Where(x => x.UserId == userSessionId).FirstOrDefault();            
+
+            if (twitchAccount == null)
+            {
+                ConfigTwitch configTwitch = contexto.ConfigTwitches.First();
+                ViewBag.twitchAuth = false;
+                ViewBag.urlTwitch = "https://id.twitch.tv/oauth2/authorize?client_id=" + configTwitch.ClientId + "&force_verify=true&response_type=code&redirect_uri=" + configTwitch.RedirectUri;
+            }
+            else
+            {
+                ViewBag.twitchAuth = true;
+            }
+
+            ProfileViewModel profile = new ProfileViewModel();
+            profile.FullName = userAcc.FullName;
+            profile.Cpf = userAcc.Cpf;
+            profile.BirthDate = userAcc.Birth.ToString("dd/MM/yyyy");
+            profile.Phone = userAcc.PhoneNumber;
+            profile.Streamer = userAcc.Streamer;
+            profile.Gender = userAcc.Gender;
+            profile.PostalCode = userAcc.PostalCode;
+            profile.Street = userAcc.Street;
+            profile.Number = userAcc.Number;
+            profile.Complement = userAcc.Complement;
+            profile.City = userAcc.City;
+            profile.State = userAcc.State;
+
+            profile.Email = user.Email;
+
+            return View(profile);
+        }
+
+        //
+        // POST: /Account/Profile
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Profile(ProfileViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string userSessionId = User.Identity.GetUserId();
+
+                bool succeeded = true;
+
+                if (!string.IsNullOrEmpty(model.Password) && !string.IsNullOrEmpty(model.CurrentPassword))
+                {
+                    var result = await UserManager.ChangePasswordAsync(userSessionId, model.CurrentPassword, model.Password);
+                    succeeded = result.Succeeded;
+
+                    if (!result.Succeeded)
+                    {
+                        AddErrors(result);
+                    }                    
+                }
+                
+                if (succeeded)
+                {
+
+                    AceitaspixEntities contexto = new AceitaspixEntities();
+                    UserAccount userAcc = contexto.UserAccounts.Where(x => x.UserId == userSessionId).FirstOrDefault();
+                    Aspnetuser user = contexto.Aspnetusers.Where(x => x.Id == userSessionId).FirstOrDefault();
+                                        
+                    userAcc.FullName = model.FullName;
+                    userAcc.Gender = model.Gender;
+                    userAcc.Cpf = model.Cpf;
+                    userAcc.Birth = DateTime.ParseExact(model.BirthDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    userAcc.Street = model.Street;
+                    userAcc.Number = model.Number;
+                    userAcc.Complement = model.Complement;
+                    userAcc.PostalCode = model.PostalCode;
+                    userAcc.State = model.State;
+                    userAcc.City = model.City;
+                    userAcc.PhoneNumber = model.Phone;
+                    userAcc.Streamer = model.Streamer;
+
+                    if (model.Email != user.Email)
+                    {
+                        bool emailExists = contexto.Aspnetusers.Any(x => x.Email == model.Email && x.Id != userSessionId);
+                        if (emailExists)
+                        {
+                            ModelState.AddModelError("", "Email não disponível");
+                            model.Email = user.UserName;
+                            return View(model);
+                        }
+                        else
+                        {
+                            user.Email = model.Email;
+                            user.UserName = model.Email;
+                        }
+                    }
+
+                    contexto.SaveChanges();
+
+                    return RedirectToAction("Index", "Home");
+                }
+                
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        //
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
@@ -155,6 +269,26 @@ namespace AceitasPixMVP.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    UserAccount userAcc = new UserAccount();
+                    userAcc.FullName = model.FullName;
+                    userAcc.Gender = model.Gender;
+                    userAcc.Cpf = model.Cpf;
+                    userAcc.Birth = DateTime.ParseExact(model.BirthDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    userAcc.Street = model.Street;
+                    userAcc.Number = model.Number;
+                    userAcc.Complement = model.Complement;
+                    userAcc.PostalCode = model.PostalCode;
+                    userAcc.State = model.State;
+                    userAcc.City = model.City;
+                    userAcc.PhoneNumber = model.Phone;
+                    userAcc.Streamer = model.Streamer;
+                    userAcc.UserId = user.Id;
+
+                    AceitaspixEntities contexto = new AceitaspixEntities();
+                    contexto.UserAccounts.AddObject(userAcc);
+
+                    contexto.SaveChanges();
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

@@ -6,7 +6,7 @@
     <title>Aceitas Pix</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -25,6 +25,7 @@
                     <li>@Html.ActionLink("Fazer Doação", "About", "Home")</li>
                     <li>@Html.ActionLink("Histórico de Doações", "About", "Home")</li>
                     <li>@Html.ActionLink("Ranking", "About", "Home")</li>
+                    <li>@Html.ActionLink("Meus dados", "Profile", "Account")</li>
 
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -38,8 +39,6 @@
             <p>&copy; @DateTime.Now.Year - Aceitas Pix</p>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
