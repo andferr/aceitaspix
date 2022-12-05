@@ -11,6 +11,7 @@
     <EntitySet Name="Withdraws" EntityType="AceitaspixModel.Withdraw" />
     <EntitySet Name="Payments" EntityType="AceitaspixModel.Payment" />
     <EntitySet Name="UserAccounts" EntityType="AceitaspixModel.UserAccount" />
+    <EntitySet Name="PaymentStatuses" EntityType="AceitaspixModel.PaymentStatus" />
     <AssociationSet Name="FK_ApplicationUser_ClaimsSet" Association="AceitaspixModel.FK_ApplicationUser_Claims">
       <End Role="Aspnetuser" EntitySet="Aspnetusers" />
       <End Role="Aspnetuserclaims" EntitySet="Aspnetuserclaims" />
@@ -31,14 +32,6 @@
       <End Role="Aspnetusers" EntitySet="Aspnetusers" />
       <End Role="Aspnetroles" EntitySet="Aspnetroles" />
     </AssociationSet>
-    <AssociationSet Name="fk_user_donateSet" Association="AceitaspixModel.fk_user_donate">
-      <End Role="Aspnetuser_IdUserDonate" EntitySet="Aspnetusers" />
-      <End Role="Payments_IdUserDonate" EntitySet="Payments" />
-    </AssociationSet>
-    <AssociationSet Name="fk_user_receiveSet" Association="AceitaspixModel.fk_user_receive">
-      <End Role="Aspnetuser_IdUserReceive" EntitySet="Aspnetusers" />
-      <End Role="Payments_IdUserReceive" EntitySet="Payments" />
-    </AssociationSet>
     <AssociationSet Name="fk_account_twitch_accountSet" Association="AceitaspixModel.fk_account_twitch_account">
       <End Role="UserTwitchAccount" EntitySet="UserTwitchAccounts" />
       <End Role="UserAccounts" EntitySet="UserAccounts" />
@@ -46,6 +39,14 @@
     <AssociationSet Name="fk_user_account_aspnetuserSet" Association="AceitaspixModel.fk_user_account_aspnetuser">
       <End Role="Aspnetuser" EntitySet="Aspnetusers" />
       <End Role="UserAccounts" EntitySet="UserAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_receiveSet" Association="AceitaspixModel.fk_user_receive">
+      <End Role="UserAccount" EntitySet="UserAccounts" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="fk_payment_statusSet" Association="AceitaspixModel.fk_payment_status">
+      <End Role="PaymentStatus" EntitySet="PaymentStatuses" />
+      <End Role="Payments" EntitySet="Payments" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Migrationhistory" ed:Guid="2c3e0ea7-4612-4980-b939-544b42e52d0d">
@@ -108,8 +109,6 @@
     <NavigationProperty Name="UserTwitchAccounts" Relationship="AceitaspixModel.fk_user_acc" FromRole="Aspnetuser" ToRole="UserTwitchAccounts" ed:Guid="d5ac38f7-35a8-4345-8183-1979cc5ea9c2" />
     <NavigationProperty Name="Withdraws" Relationship="AceitaspixModel.fk_user_withdraw" FromRole="Aspnetuser" ToRole="Withdraws" ed:Guid="5e346f4e-d6c1-4f95-8911-9041cfab61a2" />
     <NavigationProperty Name="Aspnetroles" Relationship="AceitaspixModel.Aspnetuser_Aspnetrole" FromRole="Aspnetusers" ToRole="Aspnetroles" ed:Guid="3689df60-124a-4cbf-abe1-1dd6bad707bf" />
-    <NavigationProperty Name="Payments_IdUserDonate" Relationship="AceitaspixModel.fk_user_donate" FromRole="Aspnetuser_IdUserDonate" ToRole="Payments_IdUserDonate" ed:Guid="7eb2ce4f-ba66-4749-a2d5-1243ef620b06" />
-    <NavigationProperty Name="Payments_IdUserReceive" Relationship="AceitaspixModel.fk_user_receive" FromRole="Aspnetuser_IdUserReceive" ToRole="Payments_IdUserReceive" ed:Guid="d5865365-4423-442b-869e-9345005ccdac" />
     <NavigationProperty Name="UserAccounts" Relationship="AceitaspixModel.fk_user_account_aspnetuser" FromRole="Aspnetuser" ToRole="UserAccounts" ed:Guid="9b828c88-611b-4b58-a6d9-bedb5f101203" />
   </EntityType>
   <EntityType Name="ConfigTwitch" ed:Guid="d6d4748c-6641-40fd-b6eb-9e7120558b2d">
@@ -154,11 +153,12 @@
     <Property Name="IdPayment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="df9ef649-bf2b-4b9d-92e8-30e517e58202" />
     <Property Name="Message" Type="String" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="false" ed:Guid="dc09568c-8937-412d-9757-0b31f9265216" />
     <Property Name="Value" Type="Decimal" Nullable="false" DefaultValue="0.00" Precision="10" Scale="2" ed:ValidateRequired="true" ed:Guid="f72578de-61d9-425b-8eb3-f3dcc1e88be3" />
-    <Property Name="IdUserDonate" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="f2557894-bbd5-442b-9437-c17acd776941" />
-    <Property Name="IdUserReceive" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="98bb1fdb-f43c-4e79-8dcf-5d0c916bda17" />
+    <Property Name="IdStreamer" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="025cc3fa-1b98-47a9-a21a-10e12172a1f9" />
     <Property Name="DateTransaction" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="7b9c5bfb-87c0-4681-92b7-60195976ecd6" />
-    <NavigationProperty Name="Aspnetuser_IdUserDonate" Relationship="AceitaspixModel.fk_user_donate" FromRole="Payments_IdUserDonate" ToRole="Aspnetuser_IdUserDonate" ed:Guid="00fedeed-9073-4ab5-b536-775118633d30" />
-    <NavigationProperty Name="Aspnetuser_IdUserReceive" Relationship="AceitaspixModel.fk_user_receive" FromRole="Payments_IdUserReceive" ToRole="Aspnetuser_IdUserReceive" ed:Guid="8b0224ed-f9c8-46cb-9857-5d826b86c14d" />
+    <Property Name="NicknameDonate" Type="String" MaxLength="45" Unicode="true" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="1d4cf545-1edc-40d4-bc5d-55fe549bd20d" />
+    <Property Name="Status" Type="Int32" DefaultValue="1" ed:ValidateRequired="false" ed:Guid="84ee3d41-d38e-4ed5-945a-b8b9cb7cb2c7" />
+    <NavigationProperty Name="UserAccount" Relationship="AceitaspixModel.fk_user_receive" FromRole="Payments" ToRole="UserAccount" ed:Guid="b39af183-3dac-4e61-875e-0168d2c1f830" />
+    <NavigationProperty Name="PaymentStatus" Relationship="AceitaspixModel.fk_payment_status" FromRole="Payments" ToRole="PaymentStatus" ed:Guid="8d8ae289-60e5-4670-bcc2-654fcfdc1f36" />
   </EntityType>
   <EntityType Name="UserAccount" ed:Guid="cb730229-72a3-47cb-b5ab-b69752cd9761">
     <Key>
@@ -179,8 +179,18 @@
     <Property Name="Gender" Type="String" Nullable="false" DefaultValue="'M'" MaxLength="1" Unicode="true" FixedLength="true" ed:ValidateMaxLength="1" ed:ValidateRequired="true" ed:Guid="ef506680-16c5-4836-ad7f-c3d3af083741" />
     <Property Name="Cpf" Type="String" Nullable="false" MaxLength="15" Unicode="true" ed:ValidateMaxLength="15" ed:ValidateRequired="true" ed:Guid="295b2068-940e-48bf-adff-4077c0fb3767" />
     <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="83a40da5-2c75-4830-aed9-73f908d02570" />
+    <Property Name="TwitchChannel" Type="String" MaxLength="45" Unicode="true" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="1b952b84-d812-4121-9087-85ab8a43bbac" />
     <NavigationProperty Name="UserTwitchAccount" Relationship="AceitaspixModel.fk_account_twitch_account" FromRole="UserAccounts" ToRole="UserTwitchAccount" ed:Guid="af0aab15-768b-46a1-88fd-956da7f6f867" />
     <NavigationProperty Name="Aspnetuser" Relationship="AceitaspixModel.fk_user_account_aspnetuser" FromRole="UserAccounts" ToRole="Aspnetuser" ed:Guid="27d5969d-1132-4a45-ad72-225cb6d5d0f0" />
+    <NavigationProperty Name="Payments" Relationship="AceitaspixModel.fk_user_receive" FromRole="UserAccount" ToRole="Payments" ed:Guid="1ee2b8a2-254d-46e1-a7d8-7d81c18d4edd" />
+  </EntityType>
+  <EntityType Name="PaymentStatus" ed:Guid="01de3b5e-f38a-48ea-9466-1fe17ea83e04">
+    <Key>
+      <PropertyRef Name="IdPaymentStatus" />
+    </Key>
+    <Property Name="IdPaymentStatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="8b0c2483-57c4-4512-b20a-60f104222935" />
+    <Property Name="PaymentStatus1" Type="String" MaxLength="45" Unicode="true" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="8a75ae91-b3c0-49f4-9d6d-5fbedb9dcc7e" />
+    <NavigationProperty Name="Payments" Relationship="AceitaspixModel.fk_payment_status" FromRole="PaymentStatus" ToRole="Payments" ed:Guid="13c4dc40-f870-46e0-ad8f-38e2878a977b" />
   </EntityType>
   <Association Name="FK_ApplicationUser_Claims" ed:Guid="ea622f3f-67cc-4479-b628-7d8396f919c3">
     <End Role="Aspnetuser" Type="AceitaspixModel.Aspnetuser" Multiplicity="1">
@@ -238,30 +248,6 @@
     <End Role="Aspnetusers" Type="AceitaspixModel.Aspnetuser" Multiplicity="*" />
     <End Role="Aspnetroles" Type="AceitaspixModel.Aspnetrole" Multiplicity="*" />
   </Association>
-  <Association Name="fk_user_donate" ed:Guid="4b572435-cc3d-4445-9924-7c5a9a74c907">
-    <End Role="Aspnetuser_IdUserDonate" Type="AceitaspixModel.Aspnetuser" Multiplicity="1" />
-    <End Role="Payments_IdUserDonate" Type="AceitaspixModel.Payment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Aspnetuser_IdUserDonate">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Payments_IdUserDonate">
-        <PropertyRef Name="IdUserDonate" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_user_receive" ed:Guid="db367ac6-d92d-4a72-b2ae-151be634d125">
-    <End Role="Aspnetuser_IdUserReceive" Type="AceitaspixModel.Aspnetuser" Multiplicity="1" />
-    <End Role="Payments_IdUserReceive" Type="AceitaspixModel.Payment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Aspnetuser_IdUserReceive">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Payments_IdUserReceive">
-        <PropertyRef Name="IdUserReceive" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="fk_account_twitch_account" ed:Guid="967eed6f-394e-410f-a4f9-e49981363921">
     <End Role="UserTwitchAccount" Type="AceitaspixModel.UserTwitchAccount" Multiplicity="0..1" />
     <End Role="UserAccounts" Type="AceitaspixModel.UserAccount" Multiplicity="*" />
@@ -283,6 +269,30 @@
       </Principal>
       <Dependent Role="UserAccounts">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_receive" ed:Guid="745deadb-8a4e-49ce-8127-41758572be3c">
+    <End Role="UserAccount" Type="AceitaspixModel.UserAccount" Multiplicity="1" />
+    <End Role="Payments" Type="AceitaspixModel.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccount">
+        <PropertyRef Name="IdUserAccount" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="IdStreamer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_payment_status" ed:Guid="7b46d904-2454-40e6-9478-3ae7b243e4bd">
+    <End Role="PaymentStatus" Type="AceitaspixModel.PaymentStatus" Multiplicity="0..1" />
+    <End Role="Payments" Type="AceitaspixModel.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentStatus">
+        <PropertyRef Name="IdPaymentStatus" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="Status" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

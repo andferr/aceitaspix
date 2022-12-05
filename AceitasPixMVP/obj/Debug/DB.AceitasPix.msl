@@ -97,9 +97,10 @@
           <ScalarProperty Name="IdPayment" ColumnName="id_payment" />
           <ScalarProperty Name="Message" ColumnName="message" />
           <ScalarProperty Name="Value" ColumnName="value" />
-          <ScalarProperty Name="IdUserDonate" ColumnName="id_user_donate" />
-          <ScalarProperty Name="IdUserReceive" ColumnName="id_user_receive" />
           <ScalarProperty Name="DateTransaction" ColumnName="date_transaction" />
+          <ScalarProperty Name="NicknameDonate" ColumnName="nickname_donate" />
+          <ScalarProperty Name="IdStreamer" ColumnName="id_streamer" />
+          <ScalarProperty Name="Status" ColumnName="status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -121,6 +122,15 @@
           <ScalarProperty Name="Gender" ColumnName="gender" />
           <ScalarProperty Name="Cpf" ColumnName="cpf" />
           <ScalarProperty Name="UserId" ColumnName="user_id" />
+          <ScalarProperty Name="TwitchChannel" ColumnName="twitch_channel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentStatuses">
+      <EntityTypeMapping TypeName="AceitaspixModel.PaymentStatus">
+        <MappingFragment StoreEntitySet="payment_statuses">
+          <ScalarProperty Name="IdPaymentStatus" ColumnName="id_payment_status" />
+          <ScalarProperty Name="PaymentStatus1" ColumnName="payment_status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

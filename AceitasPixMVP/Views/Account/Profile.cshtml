@@ -57,19 +57,19 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Cpf, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Cpf, new { @class = "form-control", id = "input_cpf" })
+            @Html.TextBoxFor(m => m.Cpf, new { @class = "form-control input_cpf" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.BirthDate, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control", id = "input_birth" })
+            @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control input_date" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", id = "input_phone" })
+            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control input_phone" })
         </div>
     </div>
     <div class="form-group">
@@ -82,7 +82,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.PostalCode, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.PostalCode, new { @class = "form-control", id = "input_postal" })
+                @Html.TextBoxFor(m => m.PostalCode, new { @class = "form-control input_postal" })
             </div>
         </div>
         <div class="form-group">
@@ -150,9 +150,15 @@
         <div class="form-group">
             <label class="col-md-2 control-label">Twitch</label>
             <div class="col-md-2" style="text-align:center">
-                @if (!ViewBag.twitchAuth)
+                @if (ViewBag.twitchAuth)
                 {
-                    <button  id="btnTwitch" type="button" class="btn btn-twitch">
+                    <button id="btnTwitch" type="button" class="btn btn-twitch">
+                        <i class="fa fa-1x fa-twitch"></i> Conta vinculada
+                    </button>
+                }
+                else
+                {
+                    <button id="btnTwitch" type="button" class="btn btn-twitch">
                         <i class="fa fa-1x fa-twitch"></i> Vincular minha conta
                     </button>
                 }

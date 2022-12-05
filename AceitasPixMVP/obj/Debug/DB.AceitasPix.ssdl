@@ -12,6 +12,7 @@
     <EntitySet Name="withdraws" EntityType="AceitaspixModel.Store.withdraw" store:Type="Tables" Schema="aceitaspix" Table="withdraw" />
     <EntitySet Name="payments" EntityType="AceitaspixModel.Store.payment" store:Type="Tables" Schema="aceitaspix" Table="payment" />
     <EntitySet Name="user_accounts" EntityType="AceitaspixModel.Store.user_account" store:Type="Tables" Schema="aceitaspix" Table="user_account" />
+    <EntitySet Name="payment_statuses" EntityType="AceitaspixModel.Store.payment_status" store:Type="Tables" Schema="aceitaspix" Table="payment_status" />
     <AssociationSet Name="FK_ApplicationUser_Claims" Association="AceitaspixModel.Store.FK_ApplicationUser_Claims">
       <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="aspnetuserclaims" EntitySet="aspnetuserclaims" />
@@ -36,14 +37,6 @@
       <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="withdraw" EntitySet="withdraws" />
     </AssociationSet>
-    <AssociationSet Name="fk_user_donate" Association="AceitaspixModel.Store.fk_user_donate">
-      <End Role="aspnetusers" EntitySet="aspnetusers" />
-      <End Role="payment" EntitySet="payments" />
-    </AssociationSet>
-    <AssociationSet Name="fk_user_receive" Association="AceitaspixModel.Store.fk_user_receive">
-      <End Role="aspnetusers" EntitySet="aspnetusers" />
-      <End Role="payment" EntitySet="payments" />
-    </AssociationSet>
     <AssociationSet Name="fk_account_twitch_account" Association="AceitaspixModel.Store.fk_account_twitch_account">
       <End Role="user_twitch_account" EntitySet="user_twitch_accounts" />
       <End Role="user_account" EntitySet="user_accounts" />
@@ -51,6 +44,14 @@
     <AssociationSet Name="fk_user_account_aspnetuser" Association="AceitaspixModel.Store.fk_user_account_aspnetuser">
       <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="user_account" EntitySet="user_accounts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_receive" Association="AceitaspixModel.Store.fk_user_receive">
+      <End Role="user_account" EntitySet="user_accounts" />
+      <End Role="payment" EntitySet="payments" />
+    </AssociationSet>
+    <AssociationSet Name="fk_payment_status" Association="AceitaspixModel.Store.fk_payment_status">
+      <End Role="payment_status" EntitySet="payment_statuses" />
+      <End Role="payment" EntitySet="payments" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="__migrationhistory">
@@ -153,9 +154,10 @@
     <Property Name="id_payment" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="message" Type="varchar" MaxLength="256" Collation="latin1_swedish_ci" />
     <Property Name="value" Type="decimal" Nullable="false" Precision="10" Scale="2" DefaultValue="0.00" />
-    <Property Name="id_user_donate" Type="varchar" Nullable="false" MaxLength="128" Collation="latin1_swedish_ci" />
-    <Property Name="id_user_receive" Type="varchar" Nullable="false" MaxLength="128" Collation="latin1_swedish_ci" />
+    <Property Name="id_streamer" Type="int" Nullable="false" />
     <Property Name="date_transaction" Type="datetime" Nullable="false" />
+    <Property Name="nickname_donate" Type="varchar" MaxLength="45" Collation="latin1_swedish_ci" />
+    <Property Name="status" Type="int" DefaultValue="1" />
   </EntityType>
   <EntityType Name="user_account">
     <Key>
@@ -176,6 +178,14 @@
     <Property Name="gender" Type="char" Nullable="false" MaxLength="1" Collation="latin1_swedish_ci" devart:DefaultValue="'M'" DefaultValue="M" />
     <Property Name="cpf" Type="varchar" Nullable="false" MaxLength="15" Collation="latin1_swedish_ci" />
     <Property Name="user_id" Type="varchar" Nullable="false" MaxLength="128" Collation="latin1_swedish_ci" />
+    <Property Name="twitch_channel" Type="varchar" MaxLength="45" Collation="latin1_swedish_ci" />
+  </EntityType>
+  <EntityType Name="payment_status">
+    <Key>
+      <PropertyRef Name="id_payment_status" />
+    </Key>
+    <Property Name="id_payment_status" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="payment_status" Type="varchar" MaxLength="45" Collation="latin1_swedish_ci" />
   </EntityType>
   <Association Name="FK_ApplicationUser_Claims">
     <End Role="aspnetusers" Type="AceitaspixModel.Store.aspnetusers" Multiplicity="1">
@@ -257,30 +267,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="fk_user_donate">
-    <End Role="aspnetusers" Type="AceitaspixModel.Store.aspnetusers" Multiplicity="1" />
-    <End Role="payment" Type="AceitaspixModel.Store.payment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="aspnetusers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="payment">
-        <PropertyRef Name="id_user_donate" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_user_receive">
-    <End Role="aspnetusers" Type="AceitaspixModel.Store.aspnetusers" Multiplicity="1" />
-    <End Role="payment" Type="AceitaspixModel.Store.payment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="aspnetusers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="payment">
-        <PropertyRef Name="id_user_receive" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="fk_account_twitch_account">
     <End Role="user_twitch_account" Type="AceitaspixModel.Store.user_twitch_account" Multiplicity="0..1" />
     <End Role="user_account" Type="AceitaspixModel.Store.user_account" Multiplicity="*" />
@@ -302,6 +288,30 @@
       </Principal>
       <Dependent Role="user_account">
         <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_receive">
+    <End Role="user_account" Type="AceitaspixModel.Store.user_account" Multiplicity="1" />
+    <End Role="payment" Type="AceitaspixModel.Store.payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_account">
+        <PropertyRef Name="id_user_account" />
+      </Principal>
+      <Dependent Role="payment">
+        <PropertyRef Name="id_streamer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_payment_status">
+    <End Role="payment_status" Type="AceitaspixModel.Store.payment_status" Multiplicity="0..1" />
+    <End Role="payment" Type="AceitaspixModel.Store.payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment_status">
+        <PropertyRef Name="id_payment_status" />
+      </Principal>
+      <Dependent Role="payment">
+        <PropertyRef Name="status" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

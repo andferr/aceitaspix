@@ -40,7 +40,7 @@ namespace AceitasPixMVP.Controllers
                 }               
             }
 
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
 
