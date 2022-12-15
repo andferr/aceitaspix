@@ -1,0 +1,18 @@
+﻿@model AceitasPixMVP.Models.Donation.PaymentViewModel
+
+@{
+    ViewBag.Title = "Pagamento";
+    Layout = "~/Views/Shared/_LayoutGeneric.cshtml";
+}
+
+<h2>Pagamento</h2>
+
+<div class="col-md-12 text-center">
+    <h4>Finalize o pagamento via QrCode</h4>
+</div>
+<div class="col-md-12 text-center">
+    <img src="data:image/png;base64, @Model.QrCode64"/>
+</div>
+<div class="col-md-12 text-center">
+    <a href="@Model.PaymentUrl">Ou faça o pagamento clicando aqui.</a>
+</div>

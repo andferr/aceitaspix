@@ -126,6 +126,9 @@ namespace AceitasPixMVP.Models
         [Required]
         [Display(Name = "CPF")]
         public string Cpf { get; set; }
+
+        [Display(Name = "Canal Twitch")]
+        public string TwitchChannel { get; set; }
     }
 
     public class ProfileViewModel
@@ -196,6 +199,9 @@ namespace AceitasPixMVP.Models
         [Required]
         [Display(Name = "CPF")]
         public string Cpf { get; set; }
+
+        [Display(Name = "Canal Twitch")]
+        public string TwitchChannel { get; set; }
     }
 
     public class ResetPasswordViewModel

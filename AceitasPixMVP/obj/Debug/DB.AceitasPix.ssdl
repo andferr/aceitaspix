@@ -157,7 +157,7 @@
     <Property Name="id_streamer" Type="int" Nullable="false" />
     <Property Name="date_transaction" Type="datetime" Nullable="false" />
     <Property Name="nickname_donate" Type="varchar" MaxLength="45" Collation="latin1_swedish_ci" />
-    <Property Name="status" Type="int" DefaultValue="1" />
+    <Property Name="status" Type="int" Nullable="false" DefaultValue="1" />
   </EntityType>
   <EntityType Name="user_account">
     <Key>
@@ -304,7 +304,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="fk_payment_status">
-    <End Role="payment_status" Type="AceitaspixModel.Store.payment_status" Multiplicity="0..1" />
+    <End Role="payment_status" Type="AceitaspixModel.Store.payment_status" Multiplicity="1" />
     <End Role="payment" Type="AceitaspixModel.Store.payment" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="payment_status">

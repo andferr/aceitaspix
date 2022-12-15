@@ -108,7 +108,7 @@
             <div class="col-md-10">
                 @{
                     var states = new Dictionary<string, string>
-                    {
+                        {
                         {"AC","Acre"},
                         {"AL","Alagoas"},
                         {"AP","Amapá"},
@@ -139,6 +139,12 @@
                     };
                 }
                 @Html.DropDownListFor(m => m.State, new SelectList(states, "Key", "Value"), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.TwitchChannel, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.TwitchChannel, new { @class = "form-control" })
             </div>
         </div>
     </div>

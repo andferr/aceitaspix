@@ -13,7 +13,7 @@ namespace AceitasPixMVP.Models.Donation
         public string Message { get; set; }
         [Required]
         [Display(Name = "Valor")]
-        public double Value { get; set; }
+        public decimal Value { get; set; }
         [Required]
         [Display(Name = "Streamer")]
         public string Streamer { get; set; }

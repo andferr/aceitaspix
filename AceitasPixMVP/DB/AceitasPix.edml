@@ -161,7 +161,7 @@
           <Property Name="id_streamer" Type="int" Nullable="false" />
           <Property Name="date_transaction" Type="datetime" Nullable="false" />
           <Property Name="nickname_donate" Type="varchar" MaxLength="45" Collation="latin1_swedish_ci" />
-          <Property Name="status" Type="int" DefaultValue="1" />
+          <Property Name="status" Type="int" Nullable="false" DefaultValue="1" />
         </EntityType>
         <EntityType Name="user_account">
           <Key>
@@ -308,7 +308,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_payment_status">
-          <End Role="payment_status" Type="AceitaspixModel.Store.payment_status" Multiplicity="0..1" />
+          <End Role="payment_status" Type="AceitaspixModel.Store.payment_status" Multiplicity="1" />
           <End Role="payment" Type="AceitaspixModel.Store.payment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="payment_status">
@@ -480,7 +480,7 @@
           <Property Name="IdStreamer" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="025cc3fa-1b98-47a9-a21a-10e12172a1f9" />
           <Property Name="DateTransaction" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="7b9c5bfb-87c0-4681-92b7-60195976ecd6" />
           <Property Name="NicknameDonate" Type="String" MaxLength="45" Unicode="true" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="1d4cf545-1edc-40d4-bc5d-55fe549bd20d" />
-          <Property Name="Status" Type="Int32" DefaultValue="1" ed:ValidateRequired="false" ed:Guid="84ee3d41-d38e-4ed5-945a-b8b9cb7cb2c7" />
+          <Property Name="Status" Type="Int32" Nullable="false" DefaultValue="1" ed:ValidateRequired="true" ed:Guid="84ee3d41-d38e-4ed5-945a-b8b9cb7cb2c7" />
           <NavigationProperty Name="UserAccount" Relationship="AceitaspixModel.fk_user_receive" FromRole="Payments" ToRole="UserAccount" ed:Guid="b39af183-3dac-4e61-875e-0168d2c1f830" />
           <NavigationProperty Name="PaymentStatus" Relationship="AceitaspixModel.fk_payment_status" FromRole="Payments" ToRole="PaymentStatus" ed:Guid="8d8ae289-60e5-4670-bcc2-654fcfdc1f36" />
         </EntityType>
@@ -609,7 +609,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_payment_status" ed:Guid="7b46d904-2454-40e6-9478-3ae7b243e4bd">
-          <End Role="PaymentStatus" Type="AceitaspixModel.PaymentStatus" Multiplicity="0..1" />
+          <End Role="PaymentStatus" Type="AceitaspixModel.PaymentStatus" Multiplicity="1" />
           <End Role="Payments" Type="AceitaspixModel.Payment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PaymentStatus">

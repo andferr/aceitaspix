@@ -171,6 +171,7 @@ namespace AceitasPixMVP.Controllers
             profile.Complement = userAcc.Complement;
             profile.City = userAcc.City;
             profile.State = userAcc.State;
+            profile.TwitchChannel = userAcc.TwitchChannel;
 
             profile.Email = user.Email;
 
@@ -184,10 +185,25 @@ namespace AceitasPixMVP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Profile(ProfileViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                string userSessionId = User.Identity.GetUserId();
+            AceitaspixEntities contexto = new AceitaspixEntities();
 
+            string userSessionId = User.Identity.GetUserId();
+
+            UserTwitchAccount twitchAccount = contexto.UserTwitchAccounts.Where(x => x.UserId == userSessionId).FirstOrDefault();
+
+            if (twitchAccount == null)
+            {
+                ConfigTwitch configTwitch = contexto.ConfigTwitches.First();
+                ViewBag.twitchAuth = false;
+                ViewBag.urlTwitch = "https://id.twitch.tv/oauth2/authorize?client_id=" + configTwitch.ClientId + "&force_verify=true&response_type=code&redirect_uri=" + configTwitch.RedirectUri;
+            }
+            else
+            {
+                ViewBag.twitchAuth = true;
+            }
+
+            if (ModelState.IsValid)
+            {                
                 bool succeeded = true;
 
                 if (!string.IsNullOrEmpty(model.Password) && !string.IsNullOrEmpty(model.CurrentPassword))
@@ -204,7 +220,7 @@ namespace AceitasPixMVP.Controllers
                 if (succeeded)
                 {
 
-                    AceitaspixEntities contexto = new AceitaspixEntities();
+                    
                     UserAccount userAcc = contexto.UserAccounts.Where(x => x.UserId == userSessionId).FirstOrDefault();
                     Aspnetuser user = contexto.Aspnetusers.Where(x => x.Id == userSessionId).FirstOrDefault();
                                         
@@ -220,6 +236,7 @@ namespace AceitasPixMVP.Controllers
                     userAcc.City = model.City;
                     userAcc.PhoneNumber = model.Phone;
                     userAcc.Streamer = model.Streamer;
+                    userAcc.TwitchChannel = model.TwitchChannel;
 
                     if (model.Email != user.Email)
                     {
@@ -283,6 +300,7 @@ namespace AceitasPixMVP.Controllers
                     userAcc.PhoneNumber = model.Phone;
                     userAcc.Streamer = model.Streamer;
                     userAcc.UserId = user.Id;
+                    userAcc.TwitchChannel = model.TwitchChannel;
 
                     AceitaspixEntities contexto = new AceitaspixEntities();
                     contexto.UserAccounts.AddObject(userAcc);

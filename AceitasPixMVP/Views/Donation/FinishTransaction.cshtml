@@ -1,0 +1,33 @@
+﻿@model int
+
+@{
+    Layout = "~/Views/Shared/_LayoutGeneric.cshtml";
+    string icon = "";
+    string color = "#000";
+    string status = "";
+}
+
+@if (Model == 1)
+{
+    status = "Pagamento Realizado!";
+    icon = "<span style='color: green;font-size: 300;'><i class='fa fa-check-circle' aria-hidden='true'></i></span>";
+    color = "green";
+}
+else if (Model == 2)
+{
+    status = "Pagamento Já Realizado!";
+    icon = "<span style='color: orange;font-size: 300;'><i class='fa fa-exclamation-circle' aria-hidden='true'></i></span>";
+    color = "orange";
+}
+else if (Model == 3)
+{
+    status = "Pagamento Cancelado";
+    icon = "<span style='color: red;font-size: 300;'><i class='fa fa-times-circle' aria-hidden='true'></i></span>";
+    color = "red";
+}
+<div class="col-md-12 text-center">
+    <h2 style="color: @color">@status</h2>
+</div>
+<div class="col-md-12 text-center">
+    @Html.Raw(icon);
+</div>

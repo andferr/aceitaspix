@@ -114,7 +114,7 @@
             <div class="col-md-10">
                 @{
                     var states = new Dictionary<string, string>
-                            {
+                                                {
                         {"AC","Acre"},
                         {"AL","Alagoas"},
                         {"AP","Amapá"},
@@ -147,6 +147,14 @@
                 @Html.DropDownListFor(m => m.State, new SelectList(states, "Key", "Value"), new { @class = "form-control" })
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.TwitchChannel, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.TwitchChannel, new { @class = "form-control" })
+            </div>
+        </div>
+
         <div class="form-group">
             <label class="col-md-2 control-label">Twitch</label>
             <div class="col-md-2" style="text-align:center">
@@ -164,6 +172,23 @@
                 }
             </div>
         </div>
+
+        @if (!String.IsNullOrEmpty(Model.TwitchChannel))
+        {
+            <div class="form-group">
+                <label class="col-md-2 control-label">Meu link de doação</label>
+                <div class="col-md-3">
+                    <span class="input-group">
+                        <input type="text" class="form-control" readonly value="https://localhost:44369/Donation/Transaction?streamer=@Model.TwitchChannel" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-outline-secondary js-tooltip js-copy" data-toggle="tooltip" data-placement="bottom" data-copy="https://localhost:44369/Donation/Transaction?streamer=@Model.TwitchChannel" title="Copy to clipboard">
+                                <i class="fa fa-clipboard" aria-hidden="true"></i>
+                            </button>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        }
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -178,7 +203,39 @@
 }
 
 <script>
+    function copyToClipboard(text, el) {
+        var copyTest = document.queryCommandSupported('copy');
+        var elOriginalText = el.attr('data-original-title');
+
+        if (copyTest === true) {
+            var copyTextArea = document.createElement("textarea");
+            copyTextArea.value = text;
+            document.body.appendChild(copyTextArea);
+            copyTextArea.select();
+            try {
+                var successful = document.execCommand('copy');
+                var msg = successful ? 'Copied!' : 'Whoops, not copied!';
+                el.attr('data-original-title', msg).tooltip('show');
+            } catch (err) {
+                console.log('Oops, unable to copy');
+            }
+            document.body.removeChild(copyTextArea);
+            el.attr('data-original-title', elOriginalText);
+        } else {
+            // Fallback if browser doesn't support .execCommand('copy')
+            window.prompt("Copy to clipboard: Ctrl+C or Command+C, Enter", text);
+        }
+    }
+
     $(document).ready(function () {
+        $('.js-tooltip').tooltip();
+
+        $('.js-copy').click(function () {
+            var text = $(this).attr('data-copy');
+            var el = $(this);
+            copyToClipboard(text, el);
+        });
+
         if ($("#ck_streamer").is(":checked")) {
             $("#streamer_fields").show();
         } else {

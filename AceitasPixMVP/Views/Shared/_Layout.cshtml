@@ -22,11 +22,12 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Fazer Doação", "Transaction", "Donation")</li>
-                    <li>@Html.ActionLink("Histórico de Doações", "About", "Home")</li>
-                    <li>@Html.ActionLink("Ranking", "About", "Home")</li>
-                    <li>@Html.ActionLink("Meus dados", "Profile", "Account")</li>
-
+                    <li>@Html.ActionLink("Fazer Doação (Streamer de teste)", "Transaction", "Donation", new { streamer = "bttzera" }, new { })</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Histórico de Doações", "DonationHistory", "Donation")</li>
+                        <li>@Html.ActionLink("Meus dados", "Profile", "Account")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
