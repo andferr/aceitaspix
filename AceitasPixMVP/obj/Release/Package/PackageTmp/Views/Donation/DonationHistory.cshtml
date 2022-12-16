@@ -1,0 +1,39 @@
+﻿@model List<AceitaspixModel.Payment>
+
+@{
+    ViewBag.Title = "Histórico de Doações";
+}
+
+<h2>Pagamento</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Data</th>
+            <th scope="col">Viewer</th>
+            <th scope="col">Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ 
+            int row = 1;
+        }
+        @foreach (AceitaspixModel.Payment pay in Model)
+        {
+            <tr>
+                <th scope="row">@row</th>
+                <td>@pay.DateTransaction.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                <td>@pay.NicknameDonate</td>
+                <td>@string.Format("{0:C}",pay.Value)</td>
+            </tr>
+            row++;
+        }
+        @if(Model.Count == 0){
+            <tr>
+                <td colspan="4" class="text-center">Nenhuma doação encontrada</td>
+            </tr>
+        }
+
+    </tbody>
+</table>

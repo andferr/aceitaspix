@@ -87,27 +87,22 @@ namespace AceitasPixMVP.Models
         [Required]
         [Display(Name = "Nascimento")]
         public string BirthDate { get; set; }
-
-        [Required]
+                
         [Display(Name = "CEP")]
         public string PostalCode { get; set; }
 
-        [Required]
         [Display(Name = "Endereço")]
         public string Street { get; set; }
-
-        [Required]
+                
         [Display(Name = "Número")]
         public string Number { get; set; }
 
         [Display(Name = "Complemento")]
         public string Complement { get; set; }
-
-        [Required]
+                
         [Display(Name = "Cidade")]
         public string City { get; set; }
-
-        [Required]
+                
         [Display(Name = "Estado")]
         public string State { get; set; }
 
@@ -160,27 +155,22 @@ namespace AceitasPixMVP.Models
         [Required]
         [Display(Name = "Nascimento")]
         public string BirthDate { get; set; }
-
-        [Required]
+                
         [Display(Name = "CEP")]
         public string PostalCode { get; set; }
-
-        [Required]
+                
         [Display(Name = "Endereço")]
         public string Street { get; set; }
-
-        [Required]
+                
         [Display(Name = "Número")]
         public string Number { get; set; }
 
         [Display(Name = "Complemento")]
         public string Complement { get; set; }
-
-        [Required]
+                
         [Display(Name = "Cidade")]
         public string City { get; set; }
-
-        [Required]
+                
         [Display(Name = "Estado")]
         public string State { get; set; }
 

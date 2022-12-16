@@ -5,14 +5,23 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>D:\publish</_PublishTargetUrl>
-    <History>True|2022-10-16T01:45:11.7775751Z;</History>
+    <History>True|2022-12-16T01:37:47.1934591Z;True|2022-12-15T21:28:56.1859785-03:00;True|2022-12-15T21:22:25.9673530-03:00;True|2022-12-15T21:17:36.9364928-03:00;True|2022-12-15T21:01:46.3491131-03:00;True|2022-10-15T22:45:11.7775751-03:00;</History>
   </PropertyGroup>
   <ItemGroup>
+    <File Include="Assets/error.png">
+      <publishTime>12/15/2022 17:53:40</publishTime>
+    </File>
+    <File Include="Assets/success.png">
+      <publishTime>12/15/2022 17:54:05</publishTime>
+    </File>
+    <File Include="Assets/warning.png">
+      <publishTime>12/15/2022 17:54:42</publishTime>
+    </File>
     <File Include="bin/AceitasPixMVP.dll">
-      <publishTime>10/15/2022 22:45:08</publishTime>
+      <publishTime>12/15/2022 22:37:44</publishTime>
     </File>
     <File Include="bin/AceitasPixMVP.pdb">
-      <publishTime>10/15/2022 22:45:08</publishTime>
+      <publishTime>12/15/2022 22:37:44</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>09/10/2013 16:29:20</publishTime>
@@ -34,6 +43,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="bin/EntityFramework.SqlServer.dll">
       <publishTime>10/23/2017 14:15:20</publishTime>
+    </File>
+    <File Include="bin/Gerencianet.SDK.dll">
+      <publishTime>09/17/2019 11:38:10</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
       <publishTime>11/25/2019 10:57:50</publishTime>
@@ -82,6 +94,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="bin/Owin.dll">
       <publishTime>11/13/2012 13:19:34</publishTime>
+    </File>
+    <File Include="bin/QRCoder.dll">
+      <publishTime>12/12/2021 09:30:50</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>08/08/2018 05:38:48</publishTime>
@@ -278,17 +293,38 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Content/bootstrap.min.css.map">
       <publishTime>10/15/2022 20:31:52</publishTime>
     </File>
+    <File Include="Content/font-awesome.min.css">
+      <publishTime>08/22/2019 14:35:31</publishTime>
+    </File>
     <File Include="Content/Site.css">
-      <publishTime>10/15/2022 20:31:46</publishTime>
+      <publishTime>12/04/2022 04:21:14</publishTime>
     </File>
     <File Include="DB/AceitasPix.Diagram1.view">
-      <publishTime>10/15/2022 20:48:47</publishTime>
+      <publishTime>12/15/2022 18:41:46</publishTime>
     </File>
     <File Include="DB/AceitasPix.edps">
-      <publishTime>10/15/2022 20:48:47</publishTime>
+      <publishTime>12/15/2022 18:41:49</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>10/15/2022 20:31:46</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.eot">
+      <publishTime>08/22/2019 14:35:30</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.svg">
+      <publishTime>08/22/2019 14:35:30</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.ttf">
+      <publishTime>08/22/2019 14:35:30</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.woff">
+      <publishTime>08/22/2019 14:35:30</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.woff2">
+      <publishTime>08/22/2019 14:35:30</publishTime>
+    </File>
+    <File Include="fonts/FontAwesome.otf">
+      <publishTime>08/22/2019 14:35:30</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
       <publishTime>10/15/2022 20:31:52</publishTime>
@@ -314,6 +350,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Scripts/bootstrap.min.js">
       <publishTime>10/15/2022 20:31:52</publishTime>
     </File>
+    <File Include="Scripts/formInputs.js">
+      <publishTime>12/14/2022 19:05:47</publishTime>
+    </File>
     <File Include="Scripts/jquery-3.4.1.js">
       <publishTime>10/15/2022 20:31:52</publishTime>
     </File>
@@ -331,6 +370,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="Scripts/jquery-3.4.1.slim.min.map">
       <publishTime>10/15/2022 20:31:52</publishTime>
+    </File>
+    <File Include="Scripts/jquery.inputmask.min.js">
+      <publishTime>12/30/2021 09:48:06</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
       <publishTime>10/15/2022 20:31:59</publishTime>
@@ -365,8 +407,11 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Views/Account/Login.cshtml">
       <publishTime>10/15/2022 20:31:59</publishTime>
     </File>
+    <File Include="Views/Account/Profile.cshtml">
+      <publishTime>12/15/2022 21:17:20</publishTime>
+    </File>
     <File Include="Views/Account/Register.cshtml">
-      <publishTime>10/15/2022 20:31:59</publishTime>
+      <publishTime>12/15/2022 19:30:35</publishTime>
     </File>
     <File Include="Views/Account/ResetPassword.cshtml">
       <publishTime>10/15/2022 20:31:59</publishTime>
@@ -383,6 +428,18 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
       <publishTime>10/15/2022 20:31:59</publishTime>
     </File>
+    <File Include="Views/Donation/DonationHistory.cshtml">
+      <publishTime>12/15/2022 20:31:17</publishTime>
+    </File>
+    <File Include="Views/Donation/FinishTransaction.cshtml">
+      <publishTime>12/15/2022 20:13:51</publishTime>
+    </File>
+    <File Include="Views/Donation/Payment.cshtml">
+      <publishTime>12/15/2022 21:28:46</publishTime>
+    </File>
+    <File Include="Views/Donation/Transaction.cshtml">
+      <publishTime>12/14/2022 18:39:17</publishTime>
+    </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>10/15/2022 20:31:46</publishTime>
     </File>
@@ -390,7 +447,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/15/2022 20:31:46</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/15/2022 20:31:46</publishTime>
+      <publishTime>12/04/2022 04:12:31</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>10/15/2022 20:31:59</publishTime>
@@ -411,16 +468,19 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/15/2022 20:31:59</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
-      <publishTime>10/15/2022 20:31:59</publishTime>
+      <publishTime>10/15/2022 23:15:56</publishTime>
     </File>
     <File Include="Views/Shared/Lockout.cshtml">
-      <publishTime>10/15/2022 20:31:59</publishTime>
+      <publishTime>10/15/2022 23:16:32</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>10/15/2022 22:06:34</publishTime>
+      <publishTime>12/15/2022 20:04:52</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutGeneric.cshtml">
+      <publishTime>12/14/2022 18:53:19</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
-      <publishTime>10/15/2022 20:31:59</publishTime>
+      <publishTime>10/15/2022 23:15:04</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>10/15/2022 20:31:46</publishTime>
@@ -429,7 +489,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/15/2022 20:31:46</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/15/2022 22:45:09</publishTime>
+      <publishTime>12/15/2022 21:01:43</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -1,4 +1,146 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="AceitaspixEntitiesStoreContainer" CdmEntityContainer="AceitaspixEntities" />
+  <EntityContainerMapping StorageEntityContainer="AceitaspixEntitiesStoreContainer" CdmEntityContainer="AceitaspixEntities">
+    <EntitySetMapping Name="Migrationhistories">
+      <EntityTypeMapping TypeName="AceitaspixModel.Migrationhistory">
+        <MappingFragment StoreEntitySet="__migrationhistories">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Aspnetroles">
+      <EntityTypeMapping TypeName="AceitaspixModel.Aspnetrole">
+        <MappingFragment StoreEntitySet="aspnetroles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Aspnetuserclaims">
+      <EntityTypeMapping TypeName="AceitaspixModel.Aspnetuserclaim">
+        <MappingFragment StoreEntitySet="aspnetuserclaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Aspnetuserlogins">
+      <EntityTypeMapping TypeName="AceitaspixModel.Aspnetuserlogin">
+        <MappingFragment StoreEntitySet="aspnetuserlogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Aspnetusers">
+      <EntityTypeMapping TypeName="AceitaspixModel.Aspnetuser">
+        <MappingFragment StoreEntitySet="aspnetusers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConfigTwitches">
+      <EntityTypeMapping TypeName="AceitaspixModel.ConfigTwitch">
+        <MappingFragment StoreEntitySet="config_twitches">
+          <ScalarProperty Name="IdConfigTwitch" ColumnName="id_config_twitch" />
+          <ScalarProperty Name="ClientId" ColumnName="client_id" />
+          <ScalarProperty Name="RedirectUri" ColumnName="redirect_uri" />
+          <ScalarProperty Name="ClientSecret" ColumnName="client_secret" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTwitchAccounts">
+      <EntityTypeMapping TypeName="AceitaspixModel.UserTwitchAccount">
+        <MappingFragment StoreEntitySet="user_twitch_accounts">
+          <ScalarProperty Name="IdUserTwittchAccount" ColumnName="id_user_twittch_account" />
+          <ScalarProperty Name="UserId" ColumnName="user_id" />
+          <ScalarProperty Name="TwitchUsername" ColumnName="twitch_username" />
+          <ScalarProperty Name="Code" ColumnName="code" />
+          <ScalarProperty Name="Scope" ColumnName="scope" />
+          <ScalarProperty Name="AccessToken" ColumnName="access_token" />
+          <ScalarProperty Name="RefreshToken" ColumnName="refresh_token" />
+          <ScalarProperty Name="ProfileImage" ColumnName="profile_image" />
+          <ScalarProperty Name="ExpirationDate" ColumnName="expiration_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Withdraws">
+      <EntityTypeMapping TypeName="AceitaspixModel.Withdraw">
+        <MappingFragment StoreEntitySet="withdraws">
+          <ScalarProperty Name="IdWithdraw" ColumnName="id_withdraw" />
+          <ScalarProperty Name="IdUser" ColumnName="id_user" />
+          <ScalarProperty Name="DateTransaction" ColumnName="date_transaction" />
+          <ScalarProperty Name="Value" ColumnName="value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="AceitaspixModel.Payment">
+        <MappingFragment StoreEntitySet="payments">
+          <ScalarProperty Name="IdPayment" ColumnName="id_payment" />
+          <ScalarProperty Name="Message" ColumnName="message" />
+          <ScalarProperty Name="Value" ColumnName="value" />
+          <ScalarProperty Name="DateTransaction" ColumnName="date_transaction" />
+          <ScalarProperty Name="NicknameDonate" ColumnName="nickname_donate" />
+          <ScalarProperty Name="IdStreamer" ColumnName="id_streamer" />
+          <ScalarProperty Name="Status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAccounts">
+      <EntityTypeMapping TypeName="AceitaspixModel.UserAccount">
+        <MappingFragment StoreEntitySet="user_accounts">
+          <ScalarProperty Name="IdUserAccount" ColumnName="id_user_account" />
+          <ScalarProperty Name="FullName" ColumnName="full_name" />
+          <ScalarProperty Name="Birth" ColumnName="birth" />
+          <ScalarProperty Name="PostalCode" ColumnName="postal_code" />
+          <ScalarProperty Name="Street" ColumnName="street" />
+          <ScalarProperty Name="Number" ColumnName="number" />
+          <ScalarProperty Name="Complement" ColumnName="complement" />
+          <ScalarProperty Name="City" ColumnName="city" />
+          <ScalarProperty Name="State" ColumnName="state" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="phone_number" />
+          <ScalarProperty Name="IdConfigTwitch" ColumnName="id_config_twitch" />
+          <ScalarProperty Name="Streamer" ColumnName="streamer" />
+          <ScalarProperty Name="Gender" ColumnName="gender" />
+          <ScalarProperty Name="Cpf" ColumnName="cpf" />
+          <ScalarProperty Name="UserId" ColumnName="user_id" />
+          <ScalarProperty Name="TwitchChannel" ColumnName="twitch_channel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentStatuses">
+      <EntityTypeMapping TypeName="AceitaspixModel.PaymentStatus">
+        <MappingFragment StoreEntitySet="payment_statuses">
+          <ScalarProperty Name="IdPaymentStatus" ColumnName="id_payment_status" />
+          <ScalarProperty Name="PaymentStatus1" ColumnName="payment_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Aspnetuser_AspnetroleSet" TypeName="AceitaspixModel.Aspnetuser_Aspnetrole" StoreEntitySet="aspnetuserroles">
+      <EndProperty Name="Aspnetusers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="Aspnetroles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
 </Mapping>

@@ -115,3 +115,5 @@ D:\André\aceitas pix\git\aceitaspix\AceitasPixMVP\obj\Release\AceitasPixMVP.csp
 D:\André\aceitas pix\git\aceitaspix\AceitasPixMVP\obj\Release\AceitasPixMVP.csproj.CopyComplete
 D:\André\aceitas pix\git\aceitaspix\AceitasPixMVP\obj\Release\AceitasPixMVP.dll
 D:\André\aceitas pix\git\aceitaspix\AceitasPixMVP\obj\Release\AceitasPixMVP.pdb
+D:\André\aceitas pix\git\aceitaspix\AceitasPixMVP\bin\Gerencianet.SDK.dll
+D:\André\aceitas pix\git\aceitaspix\AceitasPixMVP\bin\QRCoder.dll

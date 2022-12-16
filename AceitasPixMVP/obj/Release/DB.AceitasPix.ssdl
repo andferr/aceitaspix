@@ -1,4 +1,318 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="AceitaspixModel.Store" Alias="Self" Provider="Devart.Data.MySql" ProviderManifestToken="MySQL, 5.7.25" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:devart="http://devart.com/schemas/edml/StorageSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="AceitaspixEntitiesStoreContainer" />
+  <EntityContainer Name="AceitaspixEntitiesStoreContainer">
+    <EntitySet Name="__migrationhistories" EntityType="AceitaspixModel.Store.__migrationhistory" store:Type="Tables" Schema="aceitaspix" Table="__migrationhistory" />
+    <EntitySet Name="aspnetroles" EntityType="AceitaspixModel.Store.aspnetroles" store:Type="Tables" Schema="aceitaspix" Table="aspnetroles" />
+    <EntitySet Name="aspnetuserclaims" EntityType="AceitaspixModel.Store.aspnetuserclaims" store:Type="Tables" Schema="aceitaspix" Table="aspnetuserclaims" />
+    <EntitySet Name="aspnetuserlogins" EntityType="AceitaspixModel.Store.aspnetuserlogins" store:Type="Tables" Schema="aceitaspix" Table="aspnetuserlogins" />
+    <EntitySet Name="aspnetuserroles" EntityType="AceitaspixModel.Store.aspnetuserroles" store:Type="Tables" Schema="aceitaspix" Table="aspnetuserroles" />
+    <EntitySet Name="aspnetusers" EntityType="AceitaspixModel.Store.aspnetusers" store:Type="Tables" Schema="aceitaspix" Table="aspnetusers" />
+    <EntitySet Name="config_twitches" EntityType="AceitaspixModel.Store.config_twitch" store:Type="Tables" Schema="aceitaspix" Table="config_twitch" />
+    <EntitySet Name="user_twitch_accounts" EntityType="AceitaspixModel.Store.user_twitch_account" store:Type="Tables" Schema="aceitaspix" Table="user_twitch_account" />
+    <EntitySet Name="withdraws" EntityType="AceitaspixModel.Store.withdraw" store:Type="Tables" Schema="aceitaspix" Table="withdraw" />
+    <EntitySet Name="payments" EntityType="AceitaspixModel.Store.payment" store:Type="Tables" Schema="aceitaspix" Table="payment" />
+    <EntitySet Name="user_accounts" EntityType="AceitaspixModel.Store.user_account" store:Type="Tables" Schema="aceitaspix" Table="user_account" />
+    <EntitySet Name="payment_statuses" EntityType="AceitaspixModel.Store.payment_status" store:Type="Tables" Schema="aceitaspix" Table="payment_status" />
+    <AssociationSet Name="FK_ApplicationUser_Claims" Association="AceitaspixModel.Store.FK_ApplicationUser_Claims">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="aspnetuserclaims" EntitySet="aspnetuserclaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplicationUser_Logins" Association="AceitaspixModel.Store.FK_ApplicationUser_Logins">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="aspnetuserlogins" EntitySet="aspnetuserlogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplicationUser_Roles" Association="AceitaspixModel.Store.FK_ApplicationUser_Roles">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="aspnetuserroles" EntitySet="aspnetuserroles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdentityRole_Users" Association="AceitaspixModel.Store.FK_IdentityRole_Users">
+      <End Role="aspnetroles" EntitySet="aspnetroles" />
+      <End Role="aspnetuserroles" EntitySet="aspnetuserroles" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_acc" Association="AceitaspixModel.Store.fk_user_acc">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="user_twitch_account" EntitySet="user_twitch_accounts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_withdraw" Association="AceitaspixModel.Store.fk_user_withdraw">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="withdraw" EntitySet="withdraws" />
+    </AssociationSet>
+    <AssociationSet Name="fk_account_twitch_account" Association="AceitaspixModel.Store.fk_account_twitch_account">
+      <End Role="user_twitch_account" EntitySet="user_twitch_accounts" />
+      <End Role="user_account" EntitySet="user_accounts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_account_aspnetuser" Association="AceitaspixModel.Store.fk_user_account_aspnetuser">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="user_account" EntitySet="user_accounts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_receive" Association="AceitaspixModel.Store.fk_user_receive">
+      <End Role="user_account" EntitySet="user_accounts" />
+      <End Role="payment" EntitySet="payments" />
+    </AssociationSet>
+    <AssociationSet Name="fk_payment_status" Association="AceitaspixModel.Store.fk_payment_status">
+      <End Role="payment_status" EntitySet="payment_statuses" />
+      <End Role="payment" EntitySet="payments" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="__migrationhistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="varchar" Nullable="false" MaxLength="166" Collation="latin1_swedish_ci" />
+    <Property Name="ContextKey" Type="varchar" Nullable="false" MaxLength="166" Collation="latin1_swedish_ci" />
+    <Property Name="Model" Type="longblob" Nullable="false" />
+    <Property Name="ProductVersion" Type="varchar" Nullable="false" MaxLength="32" Collation="latin1_swedish_ci" />
+  </EntityType>
+  <EntityType Name="aspnetroles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" Nullable="false" MaxLength="128" Collation="latin1_swedish_ci" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="256" Collation="latin1_swedish_ci" />
+  </EntityType>
+  <EntityType Name="aspnetuserclaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="128" Collation="latin1_swedish_ci" />
+    <Property Name="ClaimType" Type="longtext" Collation="latin1_swedish_ci" />
+    <Property Name="ClaimValue" Type="longtext" Collation="latin1_swedish_ci" />
+  </EntityType>
+  <EntityType Name="aspnetuserlogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="varchar" Nullable="false" MaxLength="128" Collation="latin1_swedish_ci" />
+    <Property Name="ProviderKey" Type="varchar" Nullable="false" MaxLength="128" Collation="latin1_swedish_ci" />
+    <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="128" Collation="latin1_swedish_ci" />
+  </EntityType>
+  <EntityType Name="aspnetuserroles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="128" Collation="latin1_swedish_ci" />
+    <Property Name="RoleId" Type="varchar" Nullable="false" MaxLength="128" Collation="latin1_swedish_ci" />
+  </EntityType>
+  <EntityType Name="aspnetusers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" Nullable="false" MaxLength="128" Collation="latin1_swedish_ci" />
+    <Property Name="Email" Type="varchar" MaxLength="256" Collation="latin1_swedish_ci" />
+    <Property Name="EmailConfirmed" Type="boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="longtext" Collation="latin1_swedish_ci" />
+    <Property Name="SecurityStamp" Type="longtext" Collation="latin1_swedish_ci" />
+    <Property Name="PhoneNumber" Type="longtext" Collation="latin1_swedish_ci" />
+    <Property Name="PhoneNumberConfirmed" Type="boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="256" Collation="latin1_swedish_ci" />
+  </EntityType>
+  <EntityType Name="config_twitch">
+    <Key>
+      <PropertyRef Name="id_config_twitch" />
+    </Key>
+    <Property Name="id_config_twitch" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="client_id" Type="varchar" MaxLength="45" Collation="latin1_swedish_ci" />
+    <Property Name="redirect_uri" Type="varchar" MaxLength="45" Collation="latin1_swedish_ci" />
+    <Property Name="client_secret" Type="varchar" MaxLength="45" Collation="latin1_swedish_ci" />
+  </EntityType>
+  <EntityType Name="user_twitch_account">
+    <Key>
+      <PropertyRef Name="id_user_twittch_account" />
+    </Key>
+    <Property Name="id_user_twittch_account" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="varchar" Nullable="false" MaxLength="128" Collation="latin1_swedish_ci" />
+    <Property Name="twitch_username" Type="varchar" MaxLength="100" Collation="latin1_swedish_ci" />
+    <Property Name="code" Type="varchar" MaxLength="45" Collation="latin1_swedish_ci" />
+    <Property Name="scope" Type="varchar" MaxLength="45" Collation="latin1_swedish_ci" />
+    <Property Name="access_token" Type="varchar" MaxLength="256" Collation="latin1_swedish_ci" />
+    <Property Name="refresh_token" Type="varchar" MaxLength="256" Collation="latin1_swedish_ci" />
+    <Property Name="profile_image" Type="varchar" MaxLength="255" Collation="latin1_swedish_ci" />
+    <Property Name="expiration_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="withdraw">
+    <Key>
+      <PropertyRef Name="id_withdraw" />
+    </Key>
+    <Property Name="id_withdraw" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="id_user" Type="varchar" Nullable="false" MaxLength="128" Collation="latin1_swedish_ci" />
+    <Property Name="date_transaction" Type="datetime" Nullable="false" />
+    <Property Name="value" Type="decimal" Nullable="false" Precision="10" Scale="2" DefaultValue="0.00" />
+  </EntityType>
+  <EntityType Name="payment">
+    <Key>
+      <PropertyRef Name="id_payment" />
+    </Key>
+    <Property Name="id_payment" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="message" Type="varchar" MaxLength="256" Collation="latin1_swedish_ci" />
+    <Property Name="value" Type="decimal" Nullable="false" Precision="10" Scale="2" DefaultValue="0.00" />
+    <Property Name="id_streamer" Type="int" Nullable="false" />
+    <Property Name="date_transaction" Type="datetime" Nullable="false" />
+    <Property Name="nickname_donate" Type="varchar" MaxLength="45" Collation="latin1_swedish_ci" />
+    <Property Name="status" Type="int" Nullable="false" DefaultValue="1" />
+  </EntityType>
+  <EntityType Name="user_account">
+    <Key>
+      <PropertyRef Name="id_user_account" />
+    </Key>
+    <Property Name="id_user_account" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="full_name" Type="varchar" Nullable="false" MaxLength="200" Collation="latin1_swedish_ci" />
+    <Property Name="birth" Type="date" Nullable="false" />
+    <Property Name="postal_code" Type="varchar" Nullable="false" MaxLength="20" Collation="latin1_swedish_ci" />
+    <Property Name="street" Type="varchar" Nullable="false" MaxLength="150" Collation="latin1_swedish_ci" />
+    <Property Name="number" Type="varchar" Nullable="false" MaxLength="15" Collation="latin1_swedish_ci" />
+    <Property Name="complement" Type="varchar" MaxLength="15" Collation="latin1_swedish_ci" />
+    <Property Name="city" Type="varchar" Nullable="false" MaxLength="45" Collation="latin1_swedish_ci" />
+    <Property Name="state" Type="varchar" Nullable="false" MaxLength="30" Collation="latin1_swedish_ci" />
+    <Property Name="phone_number" Type="varchar" Nullable="false" MaxLength="20" Collation="latin1_swedish_ci" />
+    <Property Name="id_config_twitch" Type="int" />
+    <Property Name="streamer" Type="boolean" Nullable="false" />
+    <Property Name="gender" Type="char" Nullable="false" MaxLength="1" Collation="latin1_swedish_ci" devart:DefaultValue="'M'" DefaultValue="M" />
+    <Property Name="cpf" Type="varchar" Nullable="false" MaxLength="15" Collation="latin1_swedish_ci" />
+    <Property Name="user_id" Type="varchar" Nullable="false" MaxLength="128" Collation="latin1_swedish_ci" />
+    <Property Name="twitch_channel" Type="varchar" MaxLength="45" Collation="latin1_swedish_ci" />
+  </EntityType>
+  <EntityType Name="payment_status">
+    <Key>
+      <PropertyRef Name="id_payment_status" />
+    </Key>
+    <Property Name="id_payment_status" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="payment_status" Type="varchar" MaxLength="45" Collation="latin1_swedish_ci" />
+  </EntityType>
+  <Association Name="FK_ApplicationUser_Claims">
+    <End Role="aspnetusers" Type="AceitaspixModel.Store.aspnetusers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="aspnetuserclaims" Type="AceitaspixModel.Store.aspnetuserclaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="aspnetuserclaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplicationUser_Logins">
+    <End Role="aspnetusers" Type="AceitaspixModel.Store.aspnetusers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="aspnetuserlogins" Type="AceitaspixModel.Store.aspnetuserlogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="aspnetuserlogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplicationUser_Roles">
+    <End Role="aspnetusers" Type="AceitaspixModel.Store.aspnetusers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="aspnetuserroles" Type="AceitaspixModel.Store.aspnetuserroles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="aspnetuserroles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdentityRole_Users">
+    <End Role="aspnetroles" Type="AceitaspixModel.Store.aspnetroles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="aspnetuserroles" Type="AceitaspixModel.Store.aspnetuserroles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetroles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="aspnetuserroles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_acc">
+    <End Role="aspnetusers" Type="AceitaspixModel.Store.aspnetusers" Multiplicity="1" />
+    <End Role="user_twitch_account" Type="AceitaspixModel.Store.user_twitch_account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="user_twitch_account">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_withdraw">
+    <End Role="aspnetusers" Type="AceitaspixModel.Store.aspnetusers" Multiplicity="1" />
+    <End Role="withdraw" Type="AceitaspixModel.Store.withdraw" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="withdraw">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_account_twitch_account">
+    <End Role="user_twitch_account" Type="AceitaspixModel.Store.user_twitch_account" Multiplicity="0..1" />
+    <End Role="user_account" Type="AceitaspixModel.Store.user_account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_twitch_account">
+        <PropertyRef Name="id_user_twittch_account" />
+      </Principal>
+      <Dependent Role="user_account">
+        <PropertyRef Name="id_config_twitch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_account_aspnetuser">
+    <End Role="aspnetusers" Type="AceitaspixModel.Store.aspnetusers" Multiplicity="1" />
+    <End Role="user_account" Type="AceitaspixModel.Store.user_account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="user_account">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_receive">
+    <End Role="user_account" Type="AceitaspixModel.Store.user_account" Multiplicity="1" />
+    <End Role="payment" Type="AceitaspixModel.Store.payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_account">
+        <PropertyRef Name="id_user_account" />
+      </Principal>
+      <Dependent Role="payment">
+        <PropertyRef Name="id_streamer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_payment_status">
+    <End Role="payment_status" Type="AceitaspixModel.Store.payment_status" Multiplicity="1" />
+    <End Role="payment" Type="AceitaspixModel.Store.payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment_status">
+        <PropertyRef Name="id_payment_status" />
+      </Principal>
+      <Dependent Role="payment">
+        <PropertyRef Name="status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

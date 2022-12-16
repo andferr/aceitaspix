@@ -1,4 +1,299 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="AceitaspixModel" Alias="Self" d4p1:ViewGeneration="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:devart="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" annotation:UseStrongSpatialTypes="false" xmlns:d4p1="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityContainer Name="AceitaspixEntities" annotation:LazyLoadingEnabled="true" ed:Guid="4fc76688-c1bb-4240-b612-e676569be829" />
+  <EntityContainer Name="AceitaspixEntities" annotation:LazyLoadingEnabled="true" ed:Guid="4fc76688-c1bb-4240-b612-e676569be829">
+    <EntitySet Name="Migrationhistories" EntityType="AceitaspixModel.Migrationhistory" />
+    <EntitySet Name="Aspnetroles" EntityType="AceitaspixModel.Aspnetrole" />
+    <EntitySet Name="Aspnetuserclaims" EntityType="AceitaspixModel.Aspnetuserclaim" />
+    <EntitySet Name="Aspnetuserlogins" EntityType="AceitaspixModel.Aspnetuserlogin" />
+    <EntitySet Name="Aspnetusers" EntityType="AceitaspixModel.Aspnetuser" />
+    <EntitySet Name="ConfigTwitches" EntityType="AceitaspixModel.ConfigTwitch" />
+    <EntitySet Name="UserTwitchAccounts" EntityType="AceitaspixModel.UserTwitchAccount" />
+    <EntitySet Name="Withdraws" EntityType="AceitaspixModel.Withdraw" />
+    <EntitySet Name="Payments" EntityType="AceitaspixModel.Payment" />
+    <EntitySet Name="UserAccounts" EntityType="AceitaspixModel.UserAccount" />
+    <EntitySet Name="PaymentStatuses" EntityType="AceitaspixModel.PaymentStatus" />
+    <AssociationSet Name="FK_ApplicationUser_ClaimsSet" Association="AceitaspixModel.FK_ApplicationUser_Claims">
+      <End Role="Aspnetuser" EntitySet="Aspnetusers" />
+      <End Role="Aspnetuserclaims" EntitySet="Aspnetuserclaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplicationUser_LoginsSet" Association="AceitaspixModel.FK_ApplicationUser_Logins">
+      <End Role="Aspnetuser" EntitySet="Aspnetusers" />
+      <End Role="Aspnetuserlogins" EntitySet="Aspnetuserlogins" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_accSet" Association="AceitaspixModel.fk_user_acc">
+      <End Role="Aspnetuser" EntitySet="Aspnetusers" />
+      <End Role="UserTwitchAccounts" EntitySet="UserTwitchAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_withdrawSet" Association="AceitaspixModel.fk_user_withdraw">
+      <End Role="Aspnetuser" EntitySet="Aspnetusers" />
+      <End Role="Withdraws" EntitySet="Withdraws" />
+    </AssociationSet>
+    <AssociationSet Name="Aspnetuser_AspnetroleSet" Association="AceitaspixModel.Aspnetuser_Aspnetrole">
+      <End Role="Aspnetusers" EntitySet="Aspnetusers" />
+      <End Role="Aspnetroles" EntitySet="Aspnetroles" />
+    </AssociationSet>
+    <AssociationSet Name="fk_account_twitch_accountSet" Association="AceitaspixModel.fk_account_twitch_account">
+      <End Role="UserTwitchAccount" EntitySet="UserTwitchAccounts" />
+      <End Role="UserAccounts" EntitySet="UserAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_account_aspnetuserSet" Association="AceitaspixModel.fk_user_account_aspnetuser">
+      <End Role="Aspnetuser" EntitySet="Aspnetusers" />
+      <End Role="UserAccounts" EntitySet="UserAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_receiveSet" Association="AceitaspixModel.fk_user_receive">
+      <End Role="UserAccount" EntitySet="UserAccounts" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="fk_payment_statusSet" Association="AceitaspixModel.fk_payment_status">
+      <End Role="PaymentStatus" EntitySet="PaymentStatuses" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Migrationhistory" ed:Guid="2c3e0ea7-4612-4980-b939-544b42e52d0d">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="166" Unicode="true" ed:ValidateMaxLength="166" ed:ValidateRequired="true" ed:Guid="1f9a0a70-f201-4cb0-a47f-bf0cac038577" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="166" Unicode="true" ed:ValidateMaxLength="166" ed:ValidateRequired="true" ed:Guid="45bd0131-f52a-4374-a6c7-c6da90c5c6cb" />
+    <Property Name="Model" Type="Binary" Nullable="false" ed:ValidateRequired="true" ed:Guid="29f1364a-636a-4086-a35c-d82a6e780fec" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" Unicode="true" ed:ValidateMaxLength="32" ed:ValidateRequired="true" ed:Guid="e34a423f-c612-4ddc-b6a3-d17aa46bf0e8" />
+  </EntityType>
+  <EntityType Name="Aspnetrole" ed:Guid="ed5365b3-5f8b-4ecb-9bb9-a8f49568a2cf">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="dce76278-16c5-4adc-a1f3-f9546b043e2b" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="true" ed:Guid="56ac36ee-1087-4818-9005-be44bfa1f04e" />
+    <NavigationProperty Name="Aspnetusers" Relationship="AceitaspixModel.Aspnetuser_Aspnetrole" FromRole="Aspnetroles" ToRole="Aspnetusers" ed:Guid="ecbfc83a-2bf4-4cc9-8579-6d33d63ebf9d" />
+  </EntityType>
+  <EntityType Name="Aspnetuserclaim" ed:Guid="ae14cf03-8d9b-481f-a592-c4ddedf136ca">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="2e021816-56b0-4507-8783-5376ec7483db" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="84061490-59fa-4e55-a587-838ce93ff304" />
+    <Property Name="ClaimType" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="9d38770d-16a4-4e71-a7d8-ad8ffb2b6de2" />
+    <Property Name="ClaimValue" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="b991c29e-8d39-439a-b756-90c116c9ae28" />
+    <NavigationProperty Name="Aspnetuser" Relationship="AceitaspixModel.FK_ApplicationUser_Claims" FromRole="Aspnetuserclaims" ToRole="Aspnetuser" ed:Guid="58062531-c1ae-4577-9a00-4415e9e73cc5" />
+  </EntityType>
+  <EntityType Name="Aspnetuserlogin" ed:Guid="8739c782-0be3-4bd2-b0dc-486c6193e1a8">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="a7d5d620-5d6f-4a85-a80b-bdeba97a8bdf" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="b827fc78-5086-4b56-9802-147d519902b2" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="093e5d2d-4eb0-4a4b-b6c6-5f3e46d5cd24" />
+    <NavigationProperty Name="Aspnetuser" Relationship="AceitaspixModel.FK_ApplicationUser_Logins" FromRole="Aspnetuserlogins" ToRole="Aspnetuser" ed:Guid="fd0bbb13-e28c-4eae-b4f2-6949e3908641" />
+  </EntityType>
+  <EntityType Name="Aspnetuser" ed:Guid="47817f06-4a31-4e52-a850-4972ec0a1d71">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="2af605c8-65be-4b40-9a82-35cc80f0d152" />
+    <Property Name="Email" Type="String" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="false" ed:Guid="b1fd40b3-41b0-4737-9dd9-8452308a705f" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="56ab506a-31a2-41ab-ad64-09286478ca44" />
+    <Property Name="PasswordHash" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="fcc18120-ea92-41ca-8c82-e893bbda0910" />
+    <Property Name="SecurityStamp" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="d28989b5-3984-44b5-802e-1a3e81512d15" />
+    <Property Name="PhoneNumber" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="c623e3f9-b0c5-4634-bc03-ce9cb37c6f49" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="8a816609-fbf3-43ee-a8cb-2175419035a9" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="08306a44-1edb-4407-b34b-65aa0249ac6b" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" ed:ValidateRequired="false" ed:Guid="6ba50654-97d7-48aa-91f6-b110597967a4" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="7c630a48-9164-4c73-b540-c1a50613a1c3" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="d4f2e914-600e-46c4-9775-52c1c0bcdbfc" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="true" ed:Guid="757bb0ca-76f9-493f-9c95-afb283aa196a" />
+    <NavigationProperty Name="Aspnetuserclaims" Relationship="AceitaspixModel.FK_ApplicationUser_Claims" FromRole="Aspnetuser" ToRole="Aspnetuserclaims" ed:Guid="6f2ec09a-7ff4-4c91-8e85-6f65a655c6f8" />
+    <NavigationProperty Name="Aspnetuserlogins" Relationship="AceitaspixModel.FK_ApplicationUser_Logins" FromRole="Aspnetuser" ToRole="Aspnetuserlogins" ed:Guid="4876fce3-6441-4521-a488-b2406891b566" />
+    <NavigationProperty Name="UserTwitchAccounts" Relationship="AceitaspixModel.fk_user_acc" FromRole="Aspnetuser" ToRole="UserTwitchAccounts" ed:Guid="d5ac38f7-35a8-4345-8183-1979cc5ea9c2" />
+    <NavigationProperty Name="Withdraws" Relationship="AceitaspixModel.fk_user_withdraw" FromRole="Aspnetuser" ToRole="Withdraws" ed:Guid="5e346f4e-d6c1-4f95-8911-9041cfab61a2" />
+    <NavigationProperty Name="Aspnetroles" Relationship="AceitaspixModel.Aspnetuser_Aspnetrole" FromRole="Aspnetusers" ToRole="Aspnetroles" ed:Guid="3689df60-124a-4cbf-abe1-1dd6bad707bf" />
+    <NavigationProperty Name="UserAccounts" Relationship="AceitaspixModel.fk_user_account_aspnetuser" FromRole="Aspnetuser" ToRole="UserAccounts" ed:Guid="9b828c88-611b-4b58-a6d9-bedb5f101203" />
+  </EntityType>
+  <EntityType Name="ConfigTwitch" ed:Guid="d6d4748c-6641-40fd-b6eb-9e7120558b2d">
+    <Key>
+      <PropertyRef Name="IdConfigTwitch" />
+    </Key>
+    <Property Name="IdConfigTwitch" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="e143c75c-453f-454f-a212-a307479d6418" />
+    <Property Name="ClientId" Type="String" MaxLength="45" Unicode="true" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="b1e06b7a-b284-43c3-9622-41038317e6a5" />
+    <Property Name="RedirectUri" Type="String" MaxLength="45" Unicode="true" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="f71d58c3-0058-4b3e-b532-f0fa9b6cd552" />
+    <Property Name="ClientSecret" Type="String" MaxLength="45" Unicode="true" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="d7fc7a09-1b3c-4ebc-b848-0c5751e5a3a2" />
+  </EntityType>
+  <EntityType Name="UserTwitchAccount" ed:Guid="d438645f-91d9-44a8-9f83-55584b7ea9f3">
+    <Key>
+      <PropertyRef Name="IdUserTwittchAccount" />
+    </Key>
+    <Property Name="IdUserTwittchAccount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="2cf2428b-ef2e-4824-816d-b649bc33d4e4" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="d875818d-b678-4b7c-b8df-5feddb453296" />
+    <Property Name="TwitchUsername" Type="String" MaxLength="100" Unicode="true" ed:ValidateMaxLength="100" ed:ValidateRequired="false" ed:Guid="017f31e3-87a9-4532-94c4-b5822565644b" />
+    <Property Name="Code" Type="String" MaxLength="45" Unicode="true" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="4802e551-4d0e-4e4c-961c-0874d95b653a" />
+    <Property Name="Scope" Type="String" MaxLength="45" Unicode="true" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="938d13f5-0136-4775-ae1e-9b272e80b185" />
+    <Property Name="AccessToken" Type="String" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="false" ed:Guid="a00e21aa-7c52-4cd9-a47c-70be68ce7539" />
+    <Property Name="RefreshToken" Type="String" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="false" ed:Guid="28deefa5-f2a4-4796-a4aa-5bbc41b1befb" />
+    <Property Name="ProfileImage" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="1df0a88a-3093-40ca-aff0-90123723a868" />
+    <Property Name="ExpirationDate" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="3939913f-d054-4f5c-bfe5-8d10058e263f" />
+    <NavigationProperty Name="Aspnetuser" Relationship="AceitaspixModel.fk_user_acc" FromRole="UserTwitchAccounts" ToRole="Aspnetuser" ed:Guid="6326b7c9-aab1-460b-b30d-a27ee25f217e" />
+    <NavigationProperty Name="UserAccounts" Relationship="AceitaspixModel.fk_account_twitch_account" FromRole="UserTwitchAccount" ToRole="UserAccounts" ed:Guid="5de27d0c-79f8-47b1-a792-e3c26c5fd531" />
+  </EntityType>
+  <EntityType Name="Withdraw" ed:Guid="e67105a3-6acd-4a7c-a56e-65fd165af15d">
+    <Key>
+      <PropertyRef Name="IdWithdraw" />
+    </Key>
+    <Property Name="IdWithdraw" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="a2132729-081c-41c1-8fbc-4676cc60ad41" />
+    <Property Name="IdUser" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="3aa3ce3e-0a4a-4bbe-8b57-55b00d732d65" />
+    <Property Name="DateTransaction" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="21c8c31a-92bd-4391-9f3f-3bad62b3515b" />
+    <Property Name="Value" Type="Decimal" Nullable="false" DefaultValue="0.00" Precision="10" Scale="2" ed:ValidateRequired="true" ed:Guid="b723796f-eac0-4a19-8147-68176795bccb" />
+    <NavigationProperty Name="Aspnetuser" Relationship="AceitaspixModel.fk_user_withdraw" FromRole="Withdraws" ToRole="Aspnetuser" ed:Guid="0904a113-1dc3-4b7f-b3ad-42017cb0e546" />
+  </EntityType>
+  <EntityType Name="Payment" ed:Guid="73b67758-f052-435c-8d23-da63555d72b5">
+    <Key>
+      <PropertyRef Name="IdPayment" />
+    </Key>
+    <Property Name="IdPayment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="df9ef649-bf2b-4b9d-92e8-30e517e58202" />
+    <Property Name="Message" Type="String" MaxLength="256" Unicode="true" ed:ValidateMaxLength="256" ed:ValidateRequired="false" ed:Guid="dc09568c-8937-412d-9757-0b31f9265216" />
+    <Property Name="Value" Type="Decimal" Nullable="false" DefaultValue="0.00" Precision="10" Scale="2" ed:ValidateRequired="true" ed:Guid="f72578de-61d9-425b-8eb3-f3dcc1e88be3" />
+    <Property Name="IdStreamer" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="025cc3fa-1b98-47a9-a21a-10e12172a1f9" />
+    <Property Name="DateTransaction" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="7b9c5bfb-87c0-4681-92b7-60195976ecd6" />
+    <Property Name="NicknameDonate" Type="String" MaxLength="45" Unicode="true" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="1d4cf545-1edc-40d4-bc5d-55fe549bd20d" />
+    <Property Name="Status" Type="Int32" Nullable="false" DefaultValue="1" ed:ValidateRequired="true" ed:Guid="84ee3d41-d38e-4ed5-945a-b8b9cb7cb2c7" />
+    <NavigationProperty Name="UserAccount" Relationship="AceitaspixModel.fk_user_receive" FromRole="Payments" ToRole="UserAccount" ed:Guid="b39af183-3dac-4e61-875e-0168d2c1f830" />
+    <NavigationProperty Name="PaymentStatus" Relationship="AceitaspixModel.fk_payment_status" FromRole="Payments" ToRole="PaymentStatus" ed:Guid="8d8ae289-60e5-4670-bcc2-654fcfdc1f36" />
+  </EntityType>
+  <EntityType Name="UserAccount" ed:Guid="cb730229-72a3-47cb-b5ab-b69752cd9761">
+    <Key>
+      <PropertyRef Name="IdUserAccount" />
+    </Key>
+    <Property Name="IdUserAccount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="d7f69056-e967-4647-b02a-eb931cc5d1be" />
+    <Property Name="FullName" Type="String" Nullable="false" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="true" ed:Guid="f35c11cd-b7f4-48a6-8a85-c541d4461c32" />
+    <Property Name="Birth" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="d3189cbb-c659-485c-9f42-970eb1966855" />
+    <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="20" Unicode="true" ed:ValidateMaxLength="20" ed:ValidateRequired="true" ed:Guid="6b2a5302-e487-4f33-848a-8ab837b02174" />
+    <Property Name="Street" Type="String" Nullable="false" MaxLength="150" Unicode="true" ed:ValidateMaxLength="150" ed:ValidateRequired="true" ed:Guid="7241f285-842c-4008-b67f-cf00f4cebaee" />
+    <Property Name="Number" Type="String" Nullable="false" MaxLength="15" Unicode="true" ed:ValidateMaxLength="15" ed:ValidateRequired="true" ed:Guid="ffa7079b-7a71-43de-9dac-2b81c5b5b09d" />
+    <Property Name="Complement" Type="String" MaxLength="15" Unicode="true" ed:ValidateMaxLength="15" ed:ValidateRequired="false" ed:Guid="4794c05e-d78f-4db0-8417-175cd31f5c7a" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="45" Unicode="true" ed:ValidateMaxLength="45" ed:ValidateRequired="true" ed:Guid="a5a9fde8-a13d-438f-af24-d3aa0efdf108" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="30" Unicode="true" ed:ValidateMaxLength="30" ed:ValidateRequired="true" ed:Guid="03e0cf5a-9b7e-4341-a40f-8d261417f4e6" />
+    <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="20" Unicode="true" ed:ValidateMaxLength="20" ed:ValidateRequired="true" ed:Guid="87801012-83dc-430b-9d7d-01d29d61a9f6" />
+    <Property Name="IdConfigTwitch" Type="Int32" ed:ValidateRequired="false" ed:Guid="20d67c7f-ba90-463c-9dc3-6a1a1926ed12" />
+    <Property Name="Streamer" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="39e3feee-a697-4a50-94d2-9cc4d32cefad" />
+    <Property Name="Gender" Type="String" Nullable="false" DefaultValue="'M'" MaxLength="1" Unicode="true" FixedLength="true" ed:ValidateMaxLength="1" ed:ValidateRequired="true" ed:Guid="ef506680-16c5-4836-ad7f-c3d3af083741" />
+    <Property Name="Cpf" Type="String" Nullable="false" MaxLength="15" Unicode="true" ed:ValidateMaxLength="15" ed:ValidateRequired="true" ed:Guid="295b2068-940e-48bf-adff-4077c0fb3767" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" Unicode="true" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="83a40da5-2c75-4830-aed9-73f908d02570" />
+    <Property Name="TwitchChannel" Type="String" MaxLength="45" Unicode="true" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="1b952b84-d812-4121-9087-85ab8a43bbac" />
+    <NavigationProperty Name="UserTwitchAccount" Relationship="AceitaspixModel.fk_account_twitch_account" FromRole="UserAccounts" ToRole="UserTwitchAccount" ed:Guid="af0aab15-768b-46a1-88fd-956da7f6f867" />
+    <NavigationProperty Name="Aspnetuser" Relationship="AceitaspixModel.fk_user_account_aspnetuser" FromRole="UserAccounts" ToRole="Aspnetuser" ed:Guid="27d5969d-1132-4a45-ad72-225cb6d5d0f0" />
+    <NavigationProperty Name="Payments" Relationship="AceitaspixModel.fk_user_receive" FromRole="UserAccount" ToRole="Payments" ed:Guid="1ee2b8a2-254d-46e1-a7d8-7d81c18d4edd" />
+  </EntityType>
+  <EntityType Name="PaymentStatus" ed:Guid="01de3b5e-f38a-48ea-9466-1fe17ea83e04">
+    <Key>
+      <PropertyRef Name="IdPaymentStatus" />
+    </Key>
+    <Property Name="IdPaymentStatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="8b0c2483-57c4-4512-b20a-60f104222935" />
+    <Property Name="PaymentStatus1" Type="String" MaxLength="45" Unicode="true" ed:ValidateMaxLength="45" ed:ValidateRequired="false" ed:Guid="8a75ae91-b3c0-49f4-9d6d-5fbedb9dcc7e" />
+    <NavigationProperty Name="Payments" Relationship="AceitaspixModel.fk_payment_status" FromRole="PaymentStatus" ToRole="Payments" ed:Guid="13c4dc40-f870-46e0-ad8f-38e2878a977b" />
+  </EntityType>
+  <Association Name="FK_ApplicationUser_Claims" ed:Guid="ea622f3f-67cc-4479-b628-7d8396f919c3">
+    <End Role="Aspnetuser" Type="AceitaspixModel.Aspnetuser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Aspnetuserclaims" Type="AceitaspixModel.Aspnetuserclaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aspnetuser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Aspnetuserclaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplicationUser_Logins" ed:Guid="b13b5cd3-4048-4468-932e-294af21b929e">
+    <End Role="Aspnetuser" Type="AceitaspixModel.Aspnetuser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Aspnetuserlogins" Type="AceitaspixModel.Aspnetuserlogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aspnetuser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Aspnetuserlogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_acc" ed:Guid="ce2dcd49-1461-4671-9a11-ee0e434ddf1d">
+    <End Role="Aspnetuser" Type="AceitaspixModel.Aspnetuser" Multiplicity="1" />
+    <End Role="UserTwitchAccounts" Type="AceitaspixModel.UserTwitchAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aspnetuser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserTwitchAccounts">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_withdraw" ed:Guid="93d13de7-7f51-4961-8343-2306bfe7dc45">
+    <End Role="Aspnetuser" Type="AceitaspixModel.Aspnetuser" Multiplicity="1" />
+    <End Role="Withdraws" Type="AceitaspixModel.Withdraw" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aspnetuser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Withdraws">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Aspnetuser_Aspnetrole" ed:Guid="a0931330-896e-461f-b329-2a2023f13bb8">
+    <End Role="Aspnetusers" Type="AceitaspixModel.Aspnetuser" Multiplicity="*" />
+    <End Role="Aspnetroles" Type="AceitaspixModel.Aspnetrole" Multiplicity="*" />
+  </Association>
+  <Association Name="fk_account_twitch_account" ed:Guid="967eed6f-394e-410f-a4f9-e49981363921">
+    <End Role="UserTwitchAccount" Type="AceitaspixModel.UserTwitchAccount" Multiplicity="0..1" />
+    <End Role="UserAccounts" Type="AceitaspixModel.UserAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTwitchAccount">
+        <PropertyRef Name="IdUserTwittchAccount" />
+      </Principal>
+      <Dependent Role="UserAccounts">
+        <PropertyRef Name="IdConfigTwitch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_account_aspnetuser" ed:Guid="f3dfe912-fdc7-440f-906f-73a952193892">
+    <End Role="Aspnetuser" Type="AceitaspixModel.Aspnetuser" Multiplicity="1" />
+    <End Role="UserAccounts" Type="AceitaspixModel.UserAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aspnetuser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserAccounts">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_receive" ed:Guid="745deadb-8a4e-49ce-8127-41758572be3c">
+    <End Role="UserAccount" Type="AceitaspixModel.UserAccount" Multiplicity="1" />
+    <End Role="Payments" Type="AceitaspixModel.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccount">
+        <PropertyRef Name="IdUserAccount" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="IdStreamer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_payment_status" ed:Guid="7b46d904-2454-40e6-9478-3ae7b243e4bd">
+    <End Role="PaymentStatus" Type="AceitaspixModel.PaymentStatus" Multiplicity="1" />
+    <End Role="Payments" Type="AceitaspixModel.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentStatus">
+        <PropertyRef Name="IdPaymentStatus" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

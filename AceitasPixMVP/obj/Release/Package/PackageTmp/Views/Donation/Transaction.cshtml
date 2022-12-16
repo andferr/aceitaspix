@@ -1,0 +1,52 @@
+﻿@model AceitasPixMVP.Models.Donation.DonationViewModel
+
+@{
+    Layout = "/Views/Shared/_LayoutGeneric.cshtml";
+    ViewBag.Title = "Fazer uma doação";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+
+@using (Html.BeginForm("Transaction", "Donation", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Evie uma mensagem e uma doação.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Streamer, new { @class = "col-md-2 control-label"})
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Streamer, new { @class = "form-control", @readonly = "readyonly" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Nickname, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Nickname, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Value, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Value, new { @class = "form-control money" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Message, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(m => m.Message, new { @class = "form-control" })
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.IdStreamer);
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Enviar" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryforms")
+}
