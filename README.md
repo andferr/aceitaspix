@@ -4,7 +4,7 @@ Projeto Integrago PUC MG
 
 ## **URL HOSPEDADA LOCALMENTE, UTILIZE A URL ATUALIZADA ABAIXO.**
 
-Link para acesso ao sistema: https://d289-2804-14c-fc80-8d6b-98d6-9d1b-993a-7771.sa.ngrok.io 
+Link para acesso ao sistema: https://8bfc-2804-14c-fc80-8d6b-5d02-9ac3-ef0b-9688.sa.ngrok.io/ 
 
 O link para o vídeo demonstrativo do protótipo é https://raw.githubusercontent.com/andferr/aceitaspix/main/apresenta%C3%A7%C3%A3o%20do%20sistema%20vers%C3%A3o%20final%20(AceitasPix).mp4  
 Arquivo do vídeo presente no repositório. Nome: apresentação do sistema versão final (AceitasPix).mp4
