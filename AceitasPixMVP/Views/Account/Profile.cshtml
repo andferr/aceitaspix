@@ -179,9 +179,13 @@
                 <label class="col-md-2 control-label">Meu link de doação</label>
                 <div class="col-md-3">
                     <span class="input-group">
-                        <input type="text" class="form-control" readonly value="https://5994-2804-14c-fc80-8d6b-5890-5b6b-b16a-987b.sa.ngrok.io/Donation/Transaction?streamer=@Model.TwitchChannel" />
+                        @{
+                            string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
+                            string donationUrl = baseUrl + "/Donation/Transaction?streamer=" + Model.TwitchChannel;
+                        }
+                        <input type="text" class="form-control" readonly value="@donationUrl" />
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-outline-secondary js-tooltip js-copy" data-toggle="tooltip" data-placement="bottom" data-copy="https://5994-2804-14c-fc80-8d6b-5890-5b6b-b16a-987b.sa.ngrok.io/Donation/Transaction?streamer=@Model.TwitchChannel" title="Copy to clipboard">
+                            <button type="button" class="btn btn-outline-secondary js-tooltip js-copy" data-toggle="tooltip" data-placement="bottom" data-copy="@donationUrl" title="Copy to clipboard">
                                 <i class="fa fa-clipboard" aria-hidden="true"></i>
                             </button>
                         </span>
