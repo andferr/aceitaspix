@@ -81,7 +81,9 @@ namespace AceitasPixMVP.Controllers
                     return RedirectToAction("FinishTransaction", "Donation", new { Transaction = payment.IdPayment });
                 }
 
-                string paymentUrl = "https://5994-2804-14c-fc80-8d6b-5890-5b6b-b16a-987b.sa.ngrok.io/Donation/FinishTransaction?Transaction=" + IdPayment;
+                string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
+
+                string paymentUrl = baseUrl+ "/Donation/FinishTransaction?Transaction=" + IdPayment;
                 string qrCodeBase64 = QrCodeUtil.GerarQrCodeBas64(paymentUrl);
 
                 PaymentViewModel paymentVM = new PaymentViewModel();
